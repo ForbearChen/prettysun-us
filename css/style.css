@@ -330,11 +330,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 毛玻璃卡片 */
 .glass-card {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-card);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: var(--card-shadow);
     padding: var(--spacing-md);
     margin: var(--spacing-md) 0;
@@ -344,6 +344,7 @@ h1, h2, h3, h4, h5, h6 {
 .glass-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--hover-shadow);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .countdown {

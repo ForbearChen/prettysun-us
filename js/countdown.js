@@ -49,7 +49,7 @@ function updateCountdown() {
             daysElement.textContent = days;
         }
     } else {
-        // 生日已过
+        // 生日已过 - 计算到下一年的1月12日
         const countdownText = countdownElement.querySelector('.countdown-text');
         const countdownNumbers = countdownElement.querySelector('.countdown-numbers');
         
@@ -57,8 +57,9 @@ function updateCountdown() {
             countdownText.textContent = '期待明年的';
         }
         if (countdownNumbers) {
-            // 计算到下一年生日的天数
-            const nextBirthday = new Date('2027-01-12T00:00:00');
+            // 动态计算到下一个1月12日的天数
+            const currentYear = now.getFullYear();
+            const nextBirthday = new Date(currentYear + 1, 0, 12, 0, 0, 0); // 下一年的1月12日
             const diffToNext = nextBirthday - now;
             const daysToNext = Math.ceil(diffToNext / (1000 * 60 * 60 * 24));
             countdownNumbers.innerHTML = `<div class="countdown-unit"><span class="countdown-value">${daysToNext}</span><span class="countdown-label">天</span></div>`;
