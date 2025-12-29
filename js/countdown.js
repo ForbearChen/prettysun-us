@@ -1,10 +1,13 @@
 /**
  * 倒计时功能
- * 计算到生日（2025年1月12日）的倒计时
+ * 计算到生日（2026年1月12日）的倒计时
  */
 
-// 目标日期：2025年1月12日
-const TARGET_DATE = new Date('2025-01-12T00:00:00');
+// 目标日期：2026年1月12日
+const TARGET_DATE = new Date('2026-01-12T00:00:00');
+
+// 在一起的起始日期：2018年7月1日
+const START_DATE = new Date('2018-07-01T00:00:00');
 
 /**
  * 更新倒计时显示
@@ -86,16 +89,41 @@ function getDaysUntilBirthday() {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
+/**
+ * 计算在一起的天数
+ * @returns {number} 在一起的天数
+ */
+function getDaysTogether() {
+    const now = new Date();
+    const diffTime = now - START_DATE;
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * 更新在一起天数显示
+ */
+function updateDaysTogether() {
+    const daysTogetherElement = document.getElementById('daysTogether');
+    if (daysTogetherElement) {
+        const days = getDaysTogether();
+        daysTogetherElement.textContent = days;
+    }
+}
+
 // 页面加载时初始化
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
+        updateDaysTogether();
         // 每小时更新一次倒计时
         setInterval(updateCountdown, 3600000);
+        setInterval(updateDaysTogether, 3600000);
     });
 } else {
     updateCountdown();
+    updateDaysTogether();
     setInterval(updateCountdown, 3600000);
+    setInterval(updateDaysTogether, 3600000);
 }
 
 // 导出函数供其他模块使用
@@ -103,6 +131,8 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         updateCountdown,
         checkIfBirthday,
-        getDaysUntilBirthday
+        getDaysUntilBirthday,
+        getDaysTogether,
+        updateDaysTogether
     };
 }
