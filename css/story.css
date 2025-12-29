@@ -1,0 +1,532 @@
+/* ========== 故事页面样式 ========== */
+
+/* 章节主题色 */
+:root {
+    --chapter1-bg: #F5F0E6; /* 书页米色 */
+    --chapter2-bg: #FFF0E6; /* 美食暖橙 */
+    --chapter3-bg: #E6F2F5; /* 旅行天蓝 */
+    --chapter4-bg: #F5E6F0; /* 日常粉紫 */
+    --chapter5-bg: #FFF8E6; /* 扶持暖黄 */
+    --chapter6-bg: linear-gradient(135deg, #F5E6E8, #E8B4B8); /* 终章玫瑰金 */
+}
+
+/* 导航栏 */
+.story-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-home {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-home:hover {
+    background: rgba(232, 180, 184, 0.1);
+    transform: translateX(-3px);
+}
+
+.nav-chapter-name {
+    flex: 1;
+    text-align: center;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.nav-menu-toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.nav-menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* 章节菜单 */
+.chapter-menu {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 280px;
+    max-width: 80vw;
+    height: calc(100vh - 60px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 999;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+}
+
+.chapter-menu.active {
+    right: 0;
+}
+
+.chapter-menu-item {
+    display: block;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    background: rgba(232, 180, 184, 0.1);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.chapter-menu-item:hover {
+    background: rgba(232, 180, 184, 0.2);
+    transform: translateX(-5px);
+}
+
+/* 章节容器 */
+.chapter {
+    min-height: 100vh;
+    padding: 80px 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.chapter.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chapter-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 章节背景色 */
+#chapter1 {
+    background: var(--chapter1-bg);
+}
+
+#chapter2 {
+    background: var(--chapter2-bg);
+}
+
+#chapter3 {
+    background: var(--chapter3-bg);
+}
+
+#chapter4 {
+    background: var(--chapter4-bg);
+}
+
+#chapter5 {
+    background: var(--chapter5-bg);
+}
+
+#chapter6 {
+    background: var(--chapter6-bg);
+}
+
+/* 章节标题 */
+.chapter-title {
+    font-size: 2rem;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 16px;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-weight: 600;
+}
+
+.chapter-quote {
+    font-size: 1.3rem;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* 照片网格 - 基础样式 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-image);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 0.85rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover .photo-caption {
+    transform: translateY(0);
+}
+
+/* 第一章：书签样式 */
+.bookmark-style .photo-item {
+    background: #fff;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bookmark-style .photo-item::after {
+    content: '📖';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bookmark-style .photo-item:hover::after {
+    opacity: 1;
+}
+
+/* 第二章：盘子样式 */
+.plate-style .photo-item {
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.plate-style .photo-item:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.plate-style .photo-item:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.plate-style .photo-item:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* 第三章：明信片样式 */
+.postcard-style {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.postcard-style .photo-item {
+    background: white;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: rotate(0deg);
+    transition: all 0.4s ease;
+}
+
+.postcard-style .photo-item:nth-child(3n+1) {
+    transform: rotate(-3deg);
+}
+
+.postcard-style .photo-item:nth-child(3n+2) {
+    transform: rotate(2deg);
+}
+
+.postcard-style .photo-item:nth-child(3n) {
+    transform: rotate(-1deg);
+}
+
+.postcard-style .photo-item:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* 第四章：相册样式 */
+.album-style .photo-item {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.album-style .photo-item::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* 第五章：扶持样式 */
+.support-style {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.support-style .photo-item {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.emotional-section {
+    margin-bottom: 40px;
+}
+
+.heartfelt-words {
+    margin-top: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.heartfelt-quote {
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 20px 0;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+.heartfelt-text {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 2;
+    margin: 16px 0;
+    opacity: 0.9;
+}
+
+/* 第六章：未来样式 */
+.future-style {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.future-style .photo-item {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.future-vision {
+    text-align: center;
+    padding: 60px 20px;
+    margin: 60px 0;
+}
+
+.future-text {
+    font-size: 2rem;
+    color: var(--text);
+    margin: 24px 0;
+    opacity: 0.7;
+    font-family: 'Playfair Display', serif;
+}
+
+.future-answer {
+    font-size: 2.5rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 40px;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+/* 章节结尾文字 */
+.chapter-ending {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text);
+    font-style: italic;
+    margin-top: 40px;
+    opacity: 0.8;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+.empty-plate {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+/* 情书按钮 */
+.love-letter-button {
+    display: block;
+    margin: 40px auto 0;
+    padding: 20px 60px;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-button);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(232, 180, 184, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.love-letter-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.love-letter-button:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.love-letter-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 48px rgba(232, 180, 184, 0.5);
+    animation: letterGlow 1.5s ease infinite;
+}
+
+@keyframes letterGlow {
+    0%, 100% {
+        box-shadow: 0 12px 48px rgba(232, 180, 184, 0.5);
+    }
+    50% {
+        box-shadow: 0 12px 48px rgba(232, 180, 184, 0.8), 
+                    0 0 30px rgba(232, 180, 184, 0.6);
+    }
+}
+
+/* 平板及以上 */
+@media (min-width: 768px) {
+    .chapter {
+        padding: 100px 40px 80px;
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .chapter-title {
+        font-size: 2.5rem;
+    }
+    
+    .chapter-quote {
+        font-size: 1.5rem;
+    }
+    
+    .nav-chapter-name {
+        font-size: 1rem;
+    }
+    
+    .support-style {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 桌面端 */
+@media (min-width: 1024px) {
+    .chapter {
+        padding: 120px 60px 100px;
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+    
+    .chapter-title {
+        font-size: 3rem;
+    }
+    
+    .chapter-quote {
+        font-size: 1.7rem;
+    }
+    
+    .support-style {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .future-vision {
+        padding: 80px 20px;
+    }
+    
+    .future-text {
+        font-size: 2.5rem;
+    }
+    
+    .future-answer {
+        font-size: 3rem;
+    }
+}
+
+/* 滚动条样式 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 章节间过渡 */
+.chapter:not(:last-child)::after {
+    content: '✧';
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
+    opacity: 0.3;
+    margin-top: 40px;
+}
