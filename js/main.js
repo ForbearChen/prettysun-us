@@ -18,6 +18,8 @@ function initHeartParticles() {
     const container = document.getElementById('heartParticles');
     if (!container) return;
     
+    let particleInterval = null;
+    
     // 创建单个爱心粒子
     function createHeartParticle() {
         const heart = document.createElement('div');
@@ -49,12 +51,19 @@ function initHeartParticles() {
     }
     
     // 持续创建爱心粒子
-    setInterval(createHeartParticle, 400); // 每400毫秒创建一个
+    particleInterval = setInterval(createHeartParticle, 400); // 每400毫秒创建一个
     
     // 页面加载时创建一些初始爱心
     for (let i = 0; i < 8; i++) {
         setTimeout(createHeartParticle, i * 100);
     }
+    
+    // 清理函数（如果需要停止粒子生成）
+    return function cleanup() {
+        if (particleInterval) {
+            clearInterval(particleInterval);
+        }
+    };
 }
 
 /**
