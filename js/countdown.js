@@ -1,6 +1,7 @@
 /**
  * 倒计时功能
  * 计算到生日（2026年1月12日）的倒计时
+ * 以及在一起的时间（实时更新到秒）
  */
 
 // 目标日期：2026年1月12日
@@ -33,8 +34,7 @@ function updateCountdown() {
             countdownText.textContent = '🎂';
         }
         if (countdownNumbers) {
-            countdownNumbers.innerHTML = '生日快乐！';
-            countdownNumbers.style.color = '#FF6B6B';
+            countdownNumbers.innerHTML = '<div class="countdown-unit"><span class="countdown-value">生日快乐！</span></div>';
         }
         
         // 触发生日特效（在 easter-eggs.js 中定义）
@@ -58,10 +58,10 @@ function updateCountdown() {
         }
         if (countdownNumbers) {
             // 计算到下一年生日的天数
-            const nextBirthday = new Date('2026-01-12T00:00:00');
+            const nextBirthday = new Date('2027-01-12T00:00:00');
             const diffToNext = nextBirthday - now;
             const daysToNext = Math.ceil(diffToNext / (1000 * 60 * 60 * 24));
-            countdownNumbers.innerHTML = `<span>${daysToNext}</span> 天`;
+            countdownNumbers.innerHTML = `<div class="countdown-unit"><span class="countdown-value">${daysToNext}</span><span class="countdown-label">天</span></div>`;
         }
     }
 }
@@ -100,14 +100,26 @@ function getDaysTogether() {
 }
 
 /**
- * 更新在一起天数显示
+ * 更新在一起天数显示（实时到秒）
  */
 function updateDaysTogether() {
-    const daysTogetherElement = document.getElementById('daysTogether');
-    if (daysTogetherElement) {
-        const days = getDaysTogether();
-        daysTogetherElement.textContent = days;
-    }
+    const now = new Date();
+    const diffTime = now - START_DATE;
+    
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+    
+    const daysElement = document.getElementById('daysTogether');
+    const hoursElement = document.getElementById('hoursTogether');
+    const minutesElement = document.getElementById('minutesTogether');
+    const secondsElement = document.getElementById('secondsTogether');
+    
+    if (daysElement) daysElement.textContent = days;
+    if (hoursElement) hoursElement.textContent = hours;
+    if (minutesElement) minutesElement.textContent = minutes;
+    if (secondsElement) secondsElement.textContent = seconds;
 }
 
 // 定时器ID
@@ -121,13 +133,14 @@ if (document.readyState === 'loading') {
         updateDaysTogether();
         // 每小时更新一次倒计时
         countdownTimer = setInterval(updateCountdown, 3600000);
-        daysTogetherTimer = setInterval(updateDaysTogether, 3600000);
+        // 每秒更新一次在一起的时间
+        daysTogetherTimer = setInterval(updateDaysTogether, 1000);
     });
 } else {
     updateCountdown();
     updateDaysTogether();
     countdownTimer = setInterval(updateCountdown, 3600000);
-    daysTogetherTimer = setInterval(updateDaysTogether, 3600000);
+    daysTogetherTimer = setInterval(updateDaysTogether, 1000);
 }
 
 // 导出函数供其他模块使用
