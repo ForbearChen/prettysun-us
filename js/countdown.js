@@ -1,0 +1,108 @@
+/**
+ * 倒计时功能
+ * 计算到生日（2025年1月12日）的倒计时
+ */
+
+// 目标日期：2025年1月12日
+const TARGET_DATE = new Date('2025-01-12T00:00:00');
+
+/**
+ * 更新倒计时显示
+ */
+function updateCountdown() {
+    const now = new Date();
+    const diffTime = TARGET_DATE - now;
+    
+    // 检查是否是生日当天 (彩蛋3触发条件)
+    const isBirthday = checkIfBirthday(now);
+    
+    const countdownElement = document.getElementById('countdown');
+    const daysElement = document.getElementById('days');
+    
+    if (!countdownElement) return;
+    
+    if (isBirthday) {
+        // 生日当天显示特殊信息
+        const countdownText = countdownElement.querySelector('.countdown-text');
+        const countdownNumbers = countdownElement.querySelector('.countdown-numbers');
+        
+        if (countdownText) {
+            countdownText.textContent = '🎂';
+        }
+        if (countdownNumbers) {
+            countdownNumbers.innerHTML = '生日快乐！';
+            countdownNumbers.style.color = '#FF6B6B';
+        }
+        
+        // 触发生日特效（在 easter-eggs.js 中定义）
+        if (typeof triggerBirthdayEffect === 'function') {
+            triggerBirthdayEffect();
+        }
+    } else if (diffTime > 0) {
+        // 计算剩余天数
+        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (daysElement) {
+            daysElement.textContent = days;
+        }
+    } else {
+        // 生日已过
+        const countdownText = countdownElement.querySelector('.countdown-text');
+        const countdownNumbers = countdownElement.querySelector('.countdown-numbers');
+        
+        if (countdownText) {
+            countdownText.textContent = '期待明年的';
+        }
+        if (countdownNumbers) {
+            // 计算到下一年生日的天数
+            const nextBirthday = new Date('2026-01-12T00:00:00');
+            const diffToNext = nextBirthday - now;
+            const daysToNext = Math.ceil(diffToNext / (1000 * 60 * 60 * 24));
+            countdownNumbers.innerHTML = `<span>${daysToNext}</span> 天`;
+        }
+    }
+}
+
+/**
+ * 检查今天是否是生日
+ * @param {Date} date 要检查的日期
+ * @returns {boolean} 是否是生日
+ */
+function checkIfBirthday(date) {
+    const month = date.getMonth() + 1; // 0-11，需要+1
+    const day = date.getDate();
+    
+    // 生日：1月12日
+    return month === 1 && day === 12;
+}
+
+/**
+ * 获取到生日的剩余天数
+ * @returns {number} 剩余天数
+ */
+function getDaysUntilBirthday() {
+    const now = new Date();
+    const diffTime = TARGET_DATE - now;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
+// 页面加载时初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCountdown();
+        // 每小时更新一次倒计时
+        setInterval(updateCountdown, 3600000);
+    });
+} else {
+    updateCountdown();
+    setInterval(updateCountdown, 3600000);
+}
+
+// 导出函数供其他模块使用
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        updateCountdown,
+        checkIfBirthday,
+        getDaysUntilBirthday
+    };
+}
