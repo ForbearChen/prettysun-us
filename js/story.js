@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initChapterNavigation();
     initMenuToggle();
+    initNavScroll();
 });
 
 /**
@@ -124,36 +125,19 @@ function closeMenu() {
 window.closeMenu = closeMenu;
 
 /**
- * 照片点击放大效果（可选功能）
- * 点击照片在新窗口打开
- */
-document.addEventListener('DOMContentLoaded', function() {
-    const photoItems = document.querySelectorAll('.photo-item img');
-    
-    photoItems.forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation();
-            // 可以添加灯箱效果，这里简单处理为在新窗口打开
-            // window.open(img.src, '_blank');
-        });
-    });
-});
-
-/**
  * 页面滚动时导航栏背景变化
  */
-let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('storyNav');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 100) {
-        nav.style.background = 'rgba(255, 255, 255, 0.98)';
-        nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-    } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    }
-    
-    lastScrollTop = scrollTop;
-});
+function initNavScroll() {
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('storyNav');
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+    });
+}
