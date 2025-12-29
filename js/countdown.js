@@ -110,20 +110,24 @@ function updateDaysTogether() {
     }
 }
 
+// 定时器ID
+let countdownTimer = null;
+let daysTogetherTimer = null;
+
 // 页面加载时初始化
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
         updateDaysTogether();
         // 每小时更新一次倒计时
-        setInterval(updateCountdown, 3600000);
-        setInterval(updateDaysTogether, 3600000);
+        countdownTimer = setInterval(updateCountdown, 3600000);
+        daysTogetherTimer = setInterval(updateDaysTogether, 3600000);
     });
 } else {
     updateCountdown();
     updateDaysTogether();
-    setInterval(updateCountdown, 3600000);
-    setInterval(updateDaysTogether, 3600000);
+    countdownTimer = setInterval(updateCountdown, 3600000);
+    daysTogetherTimer = setInterval(updateDaysTogether, 3600000);
 }
 
 // 导出函数供其他模块使用

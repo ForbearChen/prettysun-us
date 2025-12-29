@@ -23,10 +23,8 @@ function initHeartParticles() {
         const heart = document.createElement('div');
         heart.className = 'heart-particle';
         
-        // 随机选择爱心样式（不同颜色和大小）
+        // 随机选择爱心样式
         const hearts = ['❤️', '💕', '💗', '💖', '💝'];
-        const colors = ['#FF6B6B', '#FF8C8C', '#FFB5B5', '#FFA0A0', '#FF9999'];
-        
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         
         // 随机位置和大小
