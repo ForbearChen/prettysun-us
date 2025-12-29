@@ -102,19 +102,3 @@ function initTypewriter() {
     // 延迟1.5秒后开始打字
     setTimeout(type, 1500);
 }
-
-/**
- * 平滑滚动到页脚
- */
-function scrollToFooter() {
-    const footerSection = document.getElementById('footerSection');
-    if (footerSection) {
-        footerSection.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-// 导出函数供全局使用
-window.scrollToFooter = scrollToFooter;

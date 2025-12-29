@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="我们的故事 - 记录每一个美好瞬间">
+    <meta name="theme-color" content="#E8B4B8">
+    <title>我们的故事 💕</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="story-nav" id="storyNav">
+        <button class="nav-home" onclick="window.location.href='index.html'">← 首页</button>
+        <div class="nav-chapter-name" id="navChapterName">我们的故事</div>
+        <div class="nav-menu-toggle" id="navMenuToggle">☰</div>
+    </nav>
+    
+    <!-- 章节导航菜单 -->
+    <div class="chapter-menu" id="chapterMenu">
+        <a href="#chapter1" class="chapter-menu-item" onclick="closeMenu()">📚 一起读书的日子</a>
+        <a href="#chapter2" class="chapter-menu-item" onclick="closeMenu()">🍜 吃过的美食</a>
+        <a href="#chapter3" class="chapter-menu-item" onclick="closeMenu()">✈️ 走过的地方</a>
+        <a href="#chapter4" class="chapter-menu-item" onclick="closeMenu()">🏠 日常点滴</a>
+        <a href="#chapter5" class="chapter-menu-item" onclick="closeMenu()">💪 互相扶持</a>
+        <a href="#chapter6" class="chapter-menu-item" onclick="closeMenu()">🌟 未来可期</a>
+    </div>
+
+    <!-- 第一章：一起读书的日子 -->
+    <section class="chapter" id="chapter1" data-chapter="第一章：一起读书的日子">
+        <div class="chapter-content">
+            <h2 class="chapter-title">📚 第一章</h2>
+            <p class="chapter-quote">"你在看文献，我在看你"</p>
+            
+            <div class="photo-grid bookmark-style">
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=1" alt="图书馆的下午">
+                    <span class="photo-caption">图书馆的下午</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=2" alt="论文修改到深夜">
+                    <span class="photo-caption">论文修改到深夜</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=3" alt="你专注的样子真好看">
+                    <span class="photo-caption">你专注的样子真好看</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=4" alt="一起听的讲座">
+                    <span class="photo-caption">一起听的讲座</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=5" alt="咖啡续命的日子">
+                    <span class="photo-caption">咖啡续命的日子</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=6" alt="被导师批评后的安慰">
+                    <span class="photo-caption">被导师批评后的安慰</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=7" alt="答辩前的紧张">
+                    <span class="photo-caption">答辩前的紧张</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=8" alt="改论文改到崩溃">
+                    <span class="photo-caption">改论文改到崩溃</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=9" alt="你给我讲的那个模型">
+                    <span class="photo-caption">你给我讲的那个模型</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=10" alt="一起写的那篇paper">
+                    <span class="photo-caption">一起写的那篇paper</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=11" alt="开学第一天">
+                    <span class="photo-caption">开学第一天</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=12" alt="期末复习周">
+                    <span class="photo-caption">期末复习周</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=13" alt="你帮我借的那本书">
+                    <span class="photo-caption">你帮我借的那本书</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=14" alt="自习室的老位置">
+                    <span class="photo-caption">自习室的老位置</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=15" alt="毕业论文的草稿">
+                    <span class="photo-caption">毕业论文的草稿</span>
+                </div>
+            </div>
+            
+            <p class="chapter-ending">这是我最喜欢的自习位置，因为能偷偷看到你</p>
+        </div>
+    </section>
+
+    <!-- 第二章：吃过的美食 -->
+    <section class="chapter" id="chapter2" data-chapter="第二章：吃过的美食">
+        <div class="chapter-content">
+            <h2 class="chapter-title">🍜 第二章</h2>
+            <p class="chapter-quote">"胃和心，你都填满了"</p>
+            
+            <div class="photo-grid plate-style">
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=16" alt="第一次说好吃的店">
+                    <span class="photo-caption">第一次说好吃的店</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=17" alt="吵架后的和好饭">
+                    <span class="photo-caption">吵架后的和好饭</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=18" alt="你做的第一顿饭">
+                    <span class="photo-caption">你做的第一顿饭</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=19" alt="深夜的外卖">
+                    <span class="photo-caption">深夜的外卖</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=20" alt="生日蛋糕">
+                    <span class="photo-caption">生日蛋糕</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=21" alt="火锅！又是火锅！">
+                    <span class="photo-caption">火锅！又是火锅！</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=22" alt="尝试新餐厅">
+                    <span class="photo-caption">尝试新餐厅</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=23" alt="失败的料理实验">
+                    <span class="photo-caption">失败的料理实验</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=24" alt="早起做的早餐">
+                    <span class="photo-caption">早起做的早餐</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=25" alt="奶茶日常">
+                    <span class="photo-caption">奶茶日常</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=26" alt="街边的小吃">
+                    <span class="photo-caption">街边的小吃</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=27" alt="过年的团圆饭">
+                    <span class="photo-caption">过年的团圆饭</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=28" alt="野餐的三明治">
+                    <span class="photo-caption">野餐的三明治</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=29" alt="你夹给我的菜">
+                    <span class="photo-caption">你夹给我的菜</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=30" alt="吃撑后的散步">
+                    <span class="photo-caption">吃撑后的散步</span>
+                </div>
+            </div>
+            
+            <p class="chapter-ending">
+                <span class="empty-plate">🍽️</span>
+                <br>不管吃什么，和你吃就是最好吃的
+            </p>
+        </div>
+    </section>
+
+    <!-- 第三章：走过的地方 -->
+    <section class="chapter" id="chapter3" data-chapter="第三章：走过的地方">
+        <div class="chapter-content">
+            <h2 class="chapter-title">✈️ 第三章</h2>
+            <p class="chapter-quote">"世界那么大，只想和你看"</p>
+            
+            <div class="photo-grid postcard-style">
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=31" alt="第一次旅行">
+                    <span class="photo-caption">第一次旅行</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=32" alt="日出">
+                    <span class="photo-caption">日出</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=33" alt="海边的风">
+                    <span class="photo-caption">海边的风</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=34" alt="山顶的合影">
+                    <span class="photo-caption">山顶的合影</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=35" alt="迷路的小巷">
+                    <span class="photo-caption">迷路的小巷</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=36" alt="民宿的窗外">
+                    <span class="photo-caption">民宿的窗外</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=37" alt="火车上的风景">
+                    <span class="photo-caption">火车上的风景</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=38" alt="当地的小吃">
+                    <span class="photo-caption">当地的小吃</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=39" alt="博物馆里">
+                    <span class="photo-caption">博物馆里</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=40" alt="街头的艺人">
+                    <span class="photo-caption">街头的艺人</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=41" alt="雨中的奔跑">
+                    <span class="photo-caption">雨中的奔跑</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=42" alt="日落时分">
+                    <span class="photo-caption">日落时分</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=43" alt="夜市的人潮">
+                    <span class="photo-caption">夜市的人潮</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=44" alt="离开前的不舍">
+                    <span class="photo-caption">离开前的不舍</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=45" alt="下一站，在哪里？">
+                    <span class="photo-caption">下一站，在哪里？</span>
+                </div>
+            </div>
+            
+            <p class="chapter-ending">还有好多地方，等着我们一起去</p>
+        </div>
+    </section>
+
+    <!-- 第四章：日常点滴 -->
+    <section class="chapter" id="chapter4" data-chapter="第四章：日常点滴">
+        <div class="chapter-content">
+            <h2 class="chapter-title">🏠 第四章</h2>
+            <p class="chapter-quote">"最普通的日子，因为有你，都在发光"</p>
+            
+            <div class="photo-grid album-style">
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=46" alt="周末的懒觉">
+                    <span class="photo-caption">周末的懒觉</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=47" alt="一起看的电影">
+                    <span class="photo-caption">一起看的电影</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=48" alt="阳台的植物">
+                    <span class="photo-caption">阳台的植物</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=49" alt="超市采购">
+                    <span class="photo-caption">超市采购</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=50" alt="你做家务的样子">
+                    <span class="photo-caption">你做家务的样子</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=51" alt="躺着刷手机">
+                    <span class="photo-caption">躺着刷手机</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=52" alt="一起打游戏">
+                    <span class="photo-caption">一起打游戏</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=53" alt="视频通话的夜晚">
+                    <span class="photo-caption">视频通话的夜晚</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=54" alt="送你的小礼物">
+                    <span class="photo-caption">送你的小礼物</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=55" alt="你偷拍的我">
+                    <span class="photo-caption">你偷拍的我</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=56" alt="我偷拍的你">
+                    <span class="photo-caption">我偷拍的你</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=57" alt="下班后的拥抱">
+                    <span class="photo-caption">下班后的拥抱</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=58" alt="一起运动">
+                    <span class="photo-caption">一起运动</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=59" alt="煮的泡面也香">
+                    <span class="photo-caption">煮的泡面也香</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=60" alt="晚安的那条消息">
+                    <span class="photo-caption">晚安的那条消息</span>
+                </div>
+            </div>
+            
+            <p class="chapter-ending">每天醒来看到你，就是最好的日常</p>
+        </div>
+    </section>
+
+    <!-- 第五章：互相扶持 -->
+    <section class="chapter" id="chapter5" data-chapter="第五章：互相扶持">
+        <div class="chapter-content">
+            <h2 class="chapter-title">💪 第五章</h2>
+            <p class="chapter-quote">"谢谢你，在看到我的缺点时，依然选择我"</p>
+            
+            <div class="emotional-section">
+                <div class="photo-grid support-style">
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/400/300?random=61" alt="你安慰我的那天">
+                        <span class="photo-caption">你安慰我的那天</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/300/400?random=62" alt="一起扛过的难关">
+                        <span class="photo-caption">一起扛过的难关</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/400/300?random=63" alt="你生病时">
+                        <span class="photo-caption">你生病时</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/300/400?random=64" alt="我焦虑时">
+                        <span class="photo-caption">我焦虑时</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/400/300?random=65" alt="深夜的长谈">
+                        <span class="photo-caption">深夜的长谈</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/300/400?random=66" alt="你给我的勇气">
+                        <span class="photo-caption">你给我的勇气</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/400/300?random=67" alt="我们的约定">
+                        <span class="photo-caption">我们的约定</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://picsum.photos/300/400?random=68" alt="风雨后的彩虹">
+                        <span class="photo-caption">风雨后的彩虹</span>
+                    </div>
+                </div>
+                
+                <div class="heartfelt-words">
+                    <p class="heartfelt-quote">"心疼"</p>
+                    <p class="heartfelt-text">在看到我的缺点的时候仍然希望我能健康快乐的活着</p>
+                    <p class="heartfelt-text">不上进偷懒纠正</p>
+                    <p class="heartfelt-quote">"规划里有我"</p>
+                </div>
+            </div>
+            
+            <p class="chapter-ending">你让我相信，我值得被爱</p>
+        </div>
+    </section>
+
+    <!-- 第六章：未来可期 -->
+    <section class="chapter final-chapter" id="chapter6" data-chapter="终章：未来可期">
+        <div class="chapter-content">
+            <h2 class="chapter-title">🌟 终章</h2>
+            <p class="chapter-quote">"小三千天飞驰而过，接下来是一辈子"</p>
+            
+            <div class="photo-grid future-style">
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=69" alt="我们的合影">
+                    <span class="photo-caption">我们的合影</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=70" alt="最近的样子">
+                    <span class="photo-caption">最近的样子</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=71" alt="你笑起来的样子">
+                    <span class="photo-caption">你笑起来的样子</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/300/400?random=72" alt="我眼中的你">
+                    <span class="photo-caption">我眼中的你</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://picsum.photos/400/300?random=73" alt="未来的我们">
+                    <span class="photo-caption">未来的我们</span>
+                </div>
+            </div>
+            
+            <div class="future-vision">
+                <p class="future-text">2026年</p>
+                <p class="future-text">博士毕业</p>
+                <p class="future-text">然后呢？</p>
+                <p class="future-answer">和你，永远在一起</p>
+            </div>
+            
+            <button class="love-letter-button" onclick="window.location.href='secret.html'">
+                读一封写给你的信 💌
+            </button>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/story.js"></script>
+</body>
+</html>
