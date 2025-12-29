@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF8C42">
+    <title>主题详情 - prettysun-us</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="detail-page">
+    <!-- 导航栏 -->
+    <nav class="detail-nav">
+        <a href="index.html" class="back-button">← 返回</a>
+        <h1 class="detail-nav-title" id="navTitle">主题详情</h1>
+    </nav>
+
+    <!-- 主题内容容器 -->
+    <main class="detail-content" id="detailContent">
+        <!-- 内容通过 JS 动态加载 -->
+    </main>
+
+    <!-- 美食主题模板 -->
+    <template id="foodTemplate">
+        <div class="theme-header">
+            <div class="theme-icon-large">🍜</div>
+            <h1>我们吃过的美食</h1>
+            <p class="theme-subtitle">每一顿都是甜蜜的回忆</p>
+        </div>
+        <div class="content-grid">
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food1" alt="美食1" loading="lazy">
+                <div class="card-info">
+                    <h3>那家温馨的餐厅</h3>
+                    <p>第一次一起吃的那道菜，你说很好吃</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food2" alt="美食2" loading="lazy">
+                <div class="card-info">
+                    <h3>街角的小店</h3>
+                    <p>我们常去的那家店，老板都认识我们了</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food3" alt="美食3" loading="lazy">
+                <div class="card-info">
+                    <h3>特别的纪念日</h3>
+                    <p>那天我们吃得很开心，笑得很灿烂</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food4" alt="美食4" loading="lazy">
+                <div class="card-info">
+                    <h3>周末的惊喜</h3>
+                    <p>意外发现的美味，成了我们的最爱</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food5" alt="美食5" loading="lazy">
+                <div class="card-info">
+                    <h3>深夜的小食</h3>
+                    <p>加班后的宵夜，有你陪伴就是幸福</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=food6" alt="美食6" loading="lazy">
+                <div class="card-info">
+                    <h3>自己做的料理</h3>
+                    <p>虽然不完美，但有你的味道</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 旅行主题模板 -->
+    <template id="travelTemplate">
+        <div class="theme-header">
+            <div class="theme-icon-large">🏞️</div>
+            <h1>去过的地方</h1>
+            <p class="theme-subtitle">世界很大，我只想和你一起看</p>
+        </div>
+        <div class="content-grid">
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel1" alt="旅行1" loading="lazy">
+                <div class="card-info">
+                    <h3>那座美丽的城市</h3>
+                    <p>第一次和你一起旅行，每一步都是浪漫</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel2" alt="旅行2" loading="lazy">
+                <div class="card-info">
+                    <h3>海边的日落</h3>
+                    <p>看着夕阳慢慢落下，牵着你的手</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel3" alt="旅行3" loading="lazy">
+                <div class="card-info">
+                    <h3>山间的清晨</h3>
+                    <p>清新的空气，还有你温暖的笑容</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel4" alt="旅行4" loading="lazy">
+                <div class="card-info">
+                    <h3>古镇的石板路</h3>
+                    <p>慢慢走，慢慢看，时光静好</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel5" alt="旅行5" loading="lazy">
+                <div class="card-info">
+                    <h3>公园的午后</h3>
+                    <p>简单的散步也是最美的回忆</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <img src="https://picsum.photos/600/400?random=travel6" alt="旅行6" loading="lazy">
+                <div class="card-info">
+                    <h3>下一站</h3>
+                    <p>期待和你去更多的地方</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 对话主题模板 -->
+    <template id="chatTemplate">
+        <div class="theme-header">
+            <div class="theme-icon-large">💬</div>
+            <h1>有趣的对话</h1>
+            <p class="theme-subtitle">我们之间的小秘密</p>
+        </div>
+        <div class="chat-container">
+            <div class="chat-bubble left">
+                <p>"今天想吃什么？"</p>
+                <span class="chat-time">那天下午</span>
+            </div>
+            <div class="chat-bubble right">
+                <p>"都行呀，你决定吧~"</p>
+                <span class="chat-time">那天下午</span>
+            </div>
+            <div class="chat-bubble left">
+                <p>"那我们去吃你最喜欢的吧"</p>
+                <span class="chat-time">那天下午</span>
+            </div>
+            <div class="chat-bubble right">
+                <p>"好呀！你最好了 ❤️"</p>
+                <span class="chat-time">那天下午</span>
+            </div>
+            <div class="chat-bubble left">
+                <p>"看到一个很有趣的东西"</p>
+                <span class="chat-time">某个周末</span>
+            </div>
+            <div class="chat-bubble right">
+                <p>"是什么呀？快给我看看~"</p>
+                <span class="chat-time">某个周末</span>
+            </div>
+            <div class="chat-bubble left">
+                <p>"晚安，做个好梦 🌙"</p>
+                <span class="chat-time">每个夜晚</span>
+            </div>
+            <div class="chat-bubble right">
+                <p>"晚安呀，梦里见 ✨"</p>
+                <span class="chat-time">每个夜晚</span>
+            </div>
+        </div>
+    </template>
+
+    <!-- 开心时刻主题模板 -->
+    <template id="momentsTemplate">
+        <div class="theme-header">
+            <div class="theme-icon-large">🌟</div>
+            <h1>开心的时刻</h1>
+            <p class="theme-subtitle">每一个笑容都值得珍藏</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>那天我们一起笑得很开心</h3>
+                    <p>不记得是什么让我们笑成那样了，但那个瞬间真的很美好</p>
+                    <img src="https://picsum.photos/500/300?random=moment1" alt="开心时刻1" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>某个周末的惊喜</h3>
+                    <p>你突然出现在我面前，给了我一个大大的拥抱</p>
+                    <img src="https://picsum.photos/500/300?random=moment2" alt="开心时刻2" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>一起完成的小目标</h3>
+                    <p>虽然过程有点曲折，但结果让我们都很满意</p>
+                    <img src="https://picsum.photos/500/300?random=moment3" alt="开心时刻3" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>平凡日子里的小确幸</h3>
+                    <p>一起做饭、看电影、散步，简单却幸福</p>
+                    <img src="https://picsum.photos/500/300?random=moment4" alt="开心时刻4" loading="lazy">
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>期待未来的每一天</h3>
+                    <p>有你在，每一天都充满期待</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 数字统计主题模板 -->
+    <template id="statsTemplate">
+        <div class="theme-header">
+            <div class="theme-icon-large">📊</div>
+            <h1>我们的数字</h1>
+            <p class="theme-subtitle">爱的统计与见证</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="daysTogether">0</div>
+                <div class="stat-label">在一起的天数</div>
+                <div class="stat-desc">每一天都很珍贵</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">328</div>
+                <div class="stat-label">一起拍的照片</div>
+                <div class="stat-desc">记录每个美好瞬间</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">156</div>
+                <div class="stat-label">一起吃的饭</div>
+                <div class="stat-desc">每一顿都很美味</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">42</div>
+                <div class="stat-label">一起看的电影</div>
+                <div class="stat-desc">欢笑与感动</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">说过的"我爱你"</div>
+                <div class="stat-desc">永远说不够</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">最爱的人</div>
+                <div class="stat-desc">就是你</div>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/countdown.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/easter-eggs.js"></script>
+    
+    <script>
+        // 加载对应主题内容
+        function loadThemeContent() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const theme = urlParams.get('theme') || 'food';
+            
+            const templates = {
+                'food': 'foodTemplate',
+                'travel': 'travelTemplate',
+                'chat': 'chatTemplate',
+                'moments': 'momentsTemplate',
+                'stats': 'statsTemplate'
+            };
+            
+            const titles = {
+                'food': '我们吃过的美食',
+                'travel': '去过的地方',
+                'chat': '有趣的对话',
+                'moments': '开心的时刻',
+                'stats': '我们的数字'
+            };
+            
+            const templateId = templates[theme] || 'foodTemplate';
+            const template = document.getElementById(templateId);
+            const content = document.getElementById('detailContent');
+            const navTitle = document.getElementById('navTitle');
+            
+            if (template && content) {
+                const clone = template.content.cloneNode(true);
+                content.appendChild(clone);
+                navTitle.textContent = titles[theme] || '主题详情';
+                
+                // 如果是统计页面，计算在一起的天数
+                if (theme === 'stats') {
+                    calculateDaysTogether();
+                }
+            }
+        }
+        
+        // 计算在一起的天数（可以修改起始日期）
+        function calculateDaysTogether() {
+            // 修改这里的日期为你们在一起的日期
+            const startDate = new Date('2024-01-01'); // 占位日期，请修改
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            const daysElement = document.getElementById('daysTogether');
+            if (daysElement) {
+                // 数字滚动动画
+                animateNumber(daysElement, 0, diffDays, 2000);
+            }
+        }
+        
+        // 数字滚动动画
+        function animateNumber(element, start, end, duration) {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+        
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', loadThemeContent);
+    </script>
+</body>
+</html>

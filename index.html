@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="致我最爱的人 - 温暖浪漫的生日纪念网站">
+    <meta name="theme-color" content="#FF8C42">
+    <title>致我最爱的人 🌻</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 音乐播放器彩蛋 (Easter Egg 1) -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-toggle" id="musicToggle" aria-label="播放音乐">
+            <span class="music-icon">🎵</span>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 首屏区域 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">致我最爱的人 🌻</h1>
+            
+            <!-- 倒计时 -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-text">距离你的生日还有</div>
+                <div class="countdown-numbers">
+                    <span id="days">0</span> 天
+                </div>
+            </div>
+            
+            <!-- 随机情话彩蛋 (Easter Egg 5) -->
+            <p class="hero-subtitle fade-in-delay" id="loveQuote">加载中...</p>
+            
+            <button class="cta-button" onclick="scrollToGallery()">
+                开始探索 →
+            </button>
+        </div>
+    </header>
+
+    <!-- 瀑布流照片墙 -->
+    <main class="gallery-section" id="gallerySection">
+        <div class="container">
+            <!-- 瀑布流容器 -->
+            <div class="waterfall" id="waterfall">
+                <!-- 照片项 -->
+                <div class="waterfall-item photo-item" data-index="1">
+                    <img src="https://picsum.photos/400/500?random=1" alt="美好瞬间" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>美好瞬间</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="2">
+                    <img src="https://picsum.photos/400/600?random=2" alt="温暖时光" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>温暖时光</h3>
+                    </div>
+                </div>
+
+                <!-- 主题卡片：美食 -->
+                <div class="waterfall-item theme-card" data-theme="food">
+                    <div class="theme-icon">🍜</div>
+                    <h3>我们吃过的美食</h3>
+                    <p>那些美味的回忆</p>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="3">
+                    <img src="https://picsum.photos/400/550?random=3" alt="那天" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>那天</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="4">
+                    <img src="https://picsum.photos/400/480?random=4" alt="一起的时光" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>一起的时光</h3>
+                    </div>
+                </div>
+
+                <!-- 主题卡片：旅行 -->
+                <div class="waterfall-item theme-card" data-theme="travel">
+                    <div class="theme-icon">🏞️</div>
+                    <h3>去过的地方</h3>
+                    <p>我们的足迹</p>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="5">
+                    <img src="https://picsum.photos/400/520?random=5" alt="某个周末" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>某个周末</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="6">
+                    <img src="https://picsum.photos/400/580?random=6" alt="开心的瞬间" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>开心的瞬间</h3>
+                    </div>
+                </div>
+
+                <!-- 主题卡片：对话 -->
+                <div class="waterfall-item theme-card" data-theme="chat">
+                    <div class="theme-icon">💬</div>
+                    <h3>有趣的对话</h3>
+                    <p>我们的小秘密</p>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="7">
+                    <img src="https://picsum.photos/400/530?random=7" alt="美好记忆" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>美好记忆</h3>
+                    </div>
+                </div>
+
+                <!-- 主题卡片：开心时刻 -->
+                <div class="waterfall-item theme-card" data-theme="moments">
+                    <div class="theme-icon">🌟</div>
+                    <h3>开心的时刻</h3>
+                    <p>每一个笑容</p>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="8">
+                    <img src="https://picsum.photos/400/560?random=8" alt="幸福时光" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>幸福时光</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="9">
+                    <img src="https://picsum.photos/400/490?random=9" alt="温馨瞬间" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>温馨瞬间</h3>
+                    </div>
+                </div>
+
+                <!-- 主题卡片：数字统计 -->
+                <div class="waterfall-item theme-card" data-theme="stats">
+                    <div class="theme-icon">📊</div>
+                    <h3>我们的数字</h3>
+                    <p>爱的统计</p>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="10">
+                    <img src="https://picsum.photos/400/540?random=10" alt="珍贵回忆" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>珍贵回忆</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="11">
+                    <img src="https://picsum.photos/400/570?random=11" alt="快乐时光" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>快乐时光</h3>
+                    </div>
+                </div>
+
+                <div class="waterfall-item photo-item" data-index="12">
+                    <img src="https://picsum.photos/400/510?random=12" alt="甜蜜回忆" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>甜蜜回忆</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">💌 未完待续...</p>
+            <p class="footer-text">期待我们的下一个365天 ❤️</p>
+            <!-- 秘密入口彩蛋 (Easter Egg 2) -->
+            <p class="footer-secret">
+                <span class="secret-dot" id="secretDot">·</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 图片灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" alt="">
+    </div>
+
+    <!-- 密码输入模态框 (Easter Egg 2) -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <h2>🔐 输入密码</h2>
+            <p class="modal-hint">悄悄告诉我，密码是什么？</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码">
+            <button class="modal-button" id="submitPassword">确认</button>
+            <p class="modal-error" id="passwordError"></p>
+        </div>
+    </div>
+
+    <!-- 生日特效容器 (Easter Egg 3) -->
+    <div class="birthday-effect" id="birthdayEffect"></div>
+
+    <!-- 彩蛋消息提示 (Easter Egg 4) -->
+    <div class="easter-message" id="easterMessage"></div>
+
+    <!-- Scripts -->
+    <script src="js/countdown.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/easter-eggs.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(err => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
