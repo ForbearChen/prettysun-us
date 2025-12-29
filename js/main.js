@@ -1,6 +1,6 @@
 /**
  * 主要逻辑文件
- * 处理瀑布流、图片灯箱、主题跳转等功能
+ * 处理瀑布流、图片灯箱、主题跳转、爱心粒子动画等功能
  */
 
 // 等待 DOM 加载完成
@@ -8,7 +8,63 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
     initThemeCards();
     initPhotoItems();
+    initHeartParticles();
 });
+
+/**
+ * 初始化爱心粒子动画
+ */
+function initHeartParticles() {
+    const container = document.getElementById('heartParticles');
+    if (!container) return;
+    
+    let particleInterval = null;
+    
+    // 创建单个爱心粒子
+    function createHeartParticle() {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        
+        // 随机选择爱心样式
+        const hearts = ['❤️', '💕', '💗', '💖', '💝'];
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        
+        // 随机位置和大小
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.random() * 15 + 10) + 'px'; // 10-25px
+        heart.style.opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8
+        
+        // 随机漂移距离
+        const drift = (Math.random() - 0.5) * 100; // -50 to 50
+        heart.style.setProperty('--drift', drift + 'px');
+        
+        // 随机动画持续时间
+        const duration = Math.random() * 4 + 5; // 5-9秒
+        heart.style.animationDuration = duration + 's';
+        
+        container.appendChild(heart);
+        
+        // 动画结束后移除元素
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }
+    
+    // 持续创建爱心粒子
+    particleInterval = setInterval(createHeartParticle, 400); // 每400毫秒创建一个
+    
+    // 页面加载时创建一些初始爱心
+    for (let i = 0; i < 8; i++) {
+        setTimeout(createHeartParticle, i * 100);
+    }
+    
+    // 清理函数（如果需要停止粒子生成）
+    return function cleanup() {
+        if (particleInterval) {
+            clearInterval(particleInterval);
+        }
+    };
+}
 
 /**
  * 平滑滚动到瀑布流区域
