@@ -1113,3 +1113,233 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+
+/* ========== Detail Page Image Animations ========== */
+/* Apple-style hover effects for detail.html images */
+.content-card {
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    will-change: transform;
+}
+
+.content-card img {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.content-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.content-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Timeline images */
+.timeline-content img {
+    border-radius: var(--radius-image);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    will-change: transform;
+}
+
+.timeline-content img:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile: simplified hover effect for detail page */
+@media (hover: none) and (pointer: coarse) {
+    .content-card:active {
+        transform: scale(0.98);
+    }
+    
+    .content-card:active img {
+        transform: scale(1.02);
+    }
+    
+    .timeline-content img:active {
+        transform: scale(0.98);
+    }
+}
+
+/* ========== Calendar Heatmap Component ========== */
+.calendar-heatmap {
+    margin: var(--spacing-md) 0;
+}
+
+.calendar-heatmap-title {
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.calendar-heatmap-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.calendar-month {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-card);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-month-title {
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.8;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+    gap: 6px;
+    max-width: 100%;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Warm color scheme - blue gradient system */
+.calendar-day.level-0 {
+    background: rgba(200, 230, 255, 0.3); /* Very light blue */
+}
+
+.calendar-day.level-1 {
+    background: rgba(150, 210, 255, 0.5); /* Light blue */
+}
+
+.calendar-day.level-2 {
+    background: rgba(100, 180, 255, 0.7); /* Medium blue */
+}
+
+.calendar-day.level-3 {
+    background: rgba(70, 150, 255, 0.85); /* Darker blue */
+}
+
+.calendar-day.level-4 {
+    background: rgba(50, 120, 255, 1); /* Deep blue */
+}
+
+/* Special days - warm accent colors */
+.calendar-day.special {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    box-shadow: 0 0 12px rgba(232, 180, 184, 0.5);
+}
+
+.calendar-day:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip */
+.calendar-day-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.calendar-day:hover .calendar-day-tooltip {
+    opacity: 1;
+}
+
+.calendar-stats {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-card);
+    text-align: center;
+}
+
+.calendar-stats-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.calendar-stats-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+}
+
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-md);
+    font-size: 0.8rem;
+    color: var(--text);
+    opacity: 0.7;
+}
+
+.calendar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.calendar-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .calendar-days {
+        grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+        gap: 8px;
+    }
+    
+    .calendar-heatmap-title {
+        font-size: 1.4rem;
+    }
+    
+    .calendar-month-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .calendar-days {
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 10px;
+    }
+}
