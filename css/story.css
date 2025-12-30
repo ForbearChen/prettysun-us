@@ -187,7 +187,9 @@
     overflow: hidden;
     border-radius: var(--radius-image);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    will-change: transform;
 }
 
 .photo-item img {
@@ -195,11 +197,29 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Apple-style hover effect with scale and shadow */
+.photo-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
 .photo-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+}
+
+/* Mobile: simplified hover effect (touch devices) */
+@media (hover: none) and (pointer: coarse) {
+    .photo-item:active {
+        transform: scale(0.98);
+    }
+    
+    .photo-item:active img {
+        transform: scale(1.02);
+    }
 }
 
 .photo-caption {
@@ -208,12 +228,14 @@
     left: 0;
     right: 0;
     padding: 12px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: white;
     font-size: 0.85rem;
     text-align: center;
     transform: translateY(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .photo-item:hover .photo-caption {

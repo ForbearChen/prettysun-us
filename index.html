@@ -72,6 +72,34 @@
                 <div class="days-together-note">从 2018 年暑期到现在 💕</div>
             </div>
             
+            <!-- 日历热力图 - 在一起的每一天 -->
+            <div class="calendar-heatmap glass-card">
+                <div class="calendar-heatmap-title">在一起的每一天 💖</div>
+                <div class="calendar-heatmap-content" id="calendarHeatmapContent">
+                    <!-- 日历通过 JS 动态生成 -->
+                </div>
+                <div class="calendar-stats">
+                    <div class="calendar-stats-text">从 2024年10月8日 到现在</div>
+                    <div class="calendar-stats-number" id="calendarStatsNumber">0</div>
+                    <div class="calendar-stats-text">个美好的日子</div>
+                </div>
+                <div class="calendar-legend">
+                    <span>颜色深浅代表不同的回忆</span>
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot" style="background: rgba(200, 230, 255, 0.3);"></div>
+                        <span>平淡</span>
+                    </div>
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot" style="background: rgba(50, 120, 255, 1);"></div>
+                        <span>深刻</span>
+                    </div>
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot" style="background: linear-gradient(135deg, #E8B4B8 0%, #A67F8E 100%);"></div>
+                        <span>特殊</span>
+                    </div>
+                </div>
+            </div>
+            
             <!-- 打字机效果情话 -->
             <p class="hero-subtitle" id="loveQuote">
                 <span id="typewriterText"></span><span class="typewriter"></span>
@@ -115,6 +143,7 @@
 
     <!-- Scripts -->
     <script src="js/countdown.js"></script>
+    <script src="js/calendar-heatmap.js"></script>
     <script src="js/main.js"></script>
     <script src="js/easter-eggs.js"></script>
     
