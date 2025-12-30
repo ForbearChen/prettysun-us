@@ -9,7 +9,11 @@ const LOVE_START_DATE = new Date('2024-10-08T00:00:00');
 
 // 等级计算种子乘数（用于伪随机生成 0-4 的等级）
 const LEVEL_SEED_MULTIPLIER = 7;
-const MAX_LEVEL = 5;
+const MAX_LEVEL = 4; // 最大等级值（0-4 共5个等级）
+const NUM_LEVELS = MAX_LEVEL + 1; // 总共的等级数量
+
+// 动画常量
+const ANIMATION_FRAME_RATE_MS = 16; // 约60fps的帧率
 
 /**
  * 格式化日期为 YYYY-MM-DD
@@ -121,7 +125,7 @@ function groupDaysByMonth(startDate, endDate) {
         
         // 添加日期到当前月份
         const dateStr = formatDate(currentDate);
-        const isSpecial = SPECIAL_DAYS.hasOwnProperty(dateStr);
+        const isSpecial = dateStr in SPECIAL_DAYS;
         const level = calculateLevel(currentDate);
         
         monthsData[monthsData.length - 1].days.push({
@@ -146,14 +150,14 @@ function groupDaysByMonth(startDate, endDate) {
 function calculateLevel(date) {
     // 特殊日子使用特殊标记
     const dateStr = formatDate(date);
-    if (SPECIAL_DAYS.hasOwnProperty(dateStr)) {
+    if (dateStr in SPECIAL_DAYS) {
         return 'special';
     }
     
     // 基于日期的简单伪随机等级
     // 使用日期作为种子生成0-4的等级
     const dayOfYear = getDayOfYear(date);
-    const level = (dayOfYear * LEVEL_SEED_MULTIPLIER) % MAX_LEVEL; // 0-4
+    const level = (dayOfYear * LEVEL_SEED_MULTIPLIER) % NUM_LEVELS; // 0-4
     return level;
 }
 
@@ -255,7 +259,7 @@ function updateStats(totalDays) {
  */
 function animateNumber(element, start, end, duration) {
     const range = end - start;
-    const increment = range / (duration / 16);
+    const increment = range / (duration / ANIMATION_FRAME_RATE_MS);
     let current = start;
     
     const timer = setInterval(() => {
@@ -265,7 +269,7 @@ function animateNumber(element, start, end, duration) {
             clearInterval(timer);
         }
         element.textContent = Math.floor(current);
-    }, 16);
+    }, ANIMATION_FRAME_RATE_MS);
 }
 
 // 页面加载时初始化
