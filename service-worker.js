@@ -58,8 +58,9 @@ self.addEventListener('fetch', event => {
     fetch(event.request)
       .then(response => {
         // 检查是否是有效的响应
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+        if (!response || response.status !== 200) {
+          // 对于无效响应，抛出错误以触发缓存降级
+          throw new Error('Network response was not ok');
         }
         
         // 克隆响应，一份给浏览器，一份存入缓存作为备用

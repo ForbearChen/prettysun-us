@@ -7,14 +7,62 @@
 // 恋爱开始日期：2024-10-08
 const LOVE_START_DATE = new Date('2024-10-08T00:00:00');
 
-// 特殊日子标记（可以扩展）
-const SPECIAL_DAYS = {
-    '2024-10-08': '在一起的第一天 💕',
-    '2024-11-08': '在一起一个月 🎉',
-    '2024-12-08': '在一起两个月 🎊',
-    '2025-01-08': '在一起三个月 💖',
-    // 可以添加更多特殊日子
-};
+// 等级计算种子乘数（用于伪随机生成 0-4 的等级）
+const LEVEL_SEED_MULTIPLIER = 7;
+const MAX_LEVEL = 5;
+
+/**
+ * 格式化日期为 YYYY-MM-DD
+ */
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+/**
+ * 动态生成特殊日子（周年纪念日）
+ */
+function generateSpecialDays() {
+    const specialDays = {};
+    const startDate = new Date(LOVE_START_DATE);
+    
+    // 第一天
+    specialDays[formatDate(startDate)] = '在一起的第一天 💕';
+    
+    // 动态生成每个月纪念日（最多计算到当前日期之后3个月）
+    const endDate = new Date();
+    endDate.setMonth(endDate.getMonth() + 3);
+    
+    let monthCount = 1;
+    let currentDate = new Date(startDate);
+    currentDate.setMonth(currentDate.getMonth() + monthCount);
+    
+    while (currentDate <= endDate) {
+        const dateStr = formatDate(currentDate);
+        if (monthCount === 1) {
+            specialDays[dateStr] = '在一起一个月 🎉';
+        } else if (monthCount === 2) {
+            specialDays[dateStr] = '在一起两个月 🎊';
+        } else if (monthCount === 3) {
+            specialDays[dateStr] = '在一起三个月 💖';
+        } else if (monthCount % 12 === 0) {
+            const years = monthCount / 12;
+            specialDays[dateStr] = `在一起${years}周年 🎂`;
+        } else if (monthCount % 6 === 0) {
+            specialDays[dateStr] = `在一起${monthCount}个月 🎈`;
+        }
+        monthCount++;
+        currentDate = new Date(startDate);
+        currentDate.setMonth(currentDate.getMonth() + monthCount);
+    }
+    
+    return specialDays;
+}
+
+// 特殊日子标记（动态生成）
+const SPECIAL_DAYS = generateSpecialDays();
 
 /**
  * 初始化日历热力图
@@ -105,7 +153,7 @@ function calculateLevel(date) {
     // 基于日期的简单伪随机等级
     // 使用日期作为种子生成0-4的等级
     const dayOfYear = getDayOfYear(date);
-    const level = (dayOfYear * 7) % 5; // 0-4
+    const level = (dayOfYear * LEVEL_SEED_MULTIPLIER) % MAX_LEVEL; // 0-4
     return level;
 }
 
@@ -117,16 +165,6 @@ function getDayOfYear(date) {
     const diff = date - start;
     const oneDay = 1000 * 60 * 60 * 24;
     return Math.floor(diff / oneDay);
-}
-
-/**
- * 格式化日期为 YYYY-MM-DD
- */
-function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
 }
 
 /**
