@@ -1,90 +1,59 @@
 /**
  * Service Worker for PWA
- * 提供离线缓存功能
- * 缓存策略：网络优先，缓存降级 (Network First, Cache Fallback)
- * - 每次优先获取最新内容
- * - 网络失败时使用缓存作为降级方案
- * - 保留离线访问能力
+ * 禁用缓存策略 - 确保每次都加载最新内容
+ * - 所有请求都从网络获取
+ * - 添加 no-cache 头部确保不使用浏览器缓存
+ * - 保留 PWA 安装能力但不缓存内容
  */
 
-const CACHE_NAME = 'prettysun-v2';
-const urlsToCache = [
-  '/prettysun-us/',
-  '/prettysun-us/index.html',
-  '/prettysun-us/detail.html',
-  '/prettysun-us/secret.html',
-  '/prettysun-us/css/style.css',
-  '/prettysun-us/js/main.js',
-  '/prettysun-us/js/countdown.js',
-  '/prettysun-us/js/calendar-heatmap.js',
-  '/prettysun-us/js/easter-eggs.js',
-  '/prettysun-us/manifest.json'
-];
+const CACHE_NAME = 'prettysun-no-cache-v1';
 
-// 安装 Service Worker
+// 安装 Service Worker - 跳过等待立即激活
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-      .catch(err => {
-        console.log('Cache installation failed:', err);
-      })
-  );
+  console.log('Service Worker installed - No cache mode');
+  self.skipWaiting(); // 立即激活新的 Service Worker
 });
 
-// 激活 Service Worker
+// 激活 Service Worker - 清除所有旧缓存
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
+          console.log('Deleting cache:', cacheName);
+          return caches.delete(cacheName);
         })
       );
+    }).then(() => {
+      console.log('Service Worker activated - All caches cleared');
+      return self.clients.claim(); // 立即控制所有页面
     })
   );
 });
 
-// 拦截网络请求 - 网络优先策略
+// 拦截网络请求 - 纯网络策略，不使用缓存
 self.addEventListener('fetch', event => {
   event.respondWith(
-    // 先尝试从网络获取最新内容
-    fetch(event.request)
-      .then(response => {
-        // 检查是否是有效的响应
-        if (!response || response.status !== 200) {
-          // 对于无效响应，抛出错误以触发缓存降级
-          throw new Error('Network response was not ok');
-        }
-        
-        // 克隆响应，一份给浏览器，一份存入缓存作为备用
-        const responseToCache = response.clone();
-        
-        caches.open(CACHE_NAME)
-          .then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-        
-        return response;
-      })
-      .catch(err => {
-        // 网络失败时，使用缓存作为降级方案
-        console.log('Network failed, using cache:', err);
-        return caches.match(event.request)
-          .then(response => {
-            // 如果缓存中有，返回缓存
-            if (response) {
-              return response;
-            }
-            // 否则，返回默认的离线页面
-            return caches.match('/prettysun-us/index.html');
-          });
-      })
+    fetch(event.request, {
+      cache: 'no-store', // 完全禁用缓存
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
+    }).then(response => {
+      // 直接返回网络响应，不进行任何缓存
+      return response;
+    }).catch(err => {
+      // 网络失败时返回错误信息
+      console.error('Network request failed:', err);
+      return new Response('网络连接失败，请检查网络后刷新页面', {
+        status: 503,
+        statusText: 'Service Unavailable',
+        headers: new Headers({
+          'Content-Type': 'text/plain; charset=utf-8'
+        })
+      });
+    })
   );
 });

@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="致我最爱的小嘟嘟 - 温暖浪漫的生日纪念网站">
     <meta name="theme-color" content="#E8B4B8">
     <title>致我最爱的小嘟嘟 💕</title>
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modern-enhancements.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
+
 <body>
     <!-- 粒子动画容器 -->
     <div class="heart-particles" id="heartParticles"></div>
-    
+
     <!-- 音乐播放器彩蛋 (Easter Egg 1) -->
     <div class="music-player" id="musicPlayer">
         <button class="music-toggle" id="musicToggle" aria-label="播放音乐">
@@ -36,9 +42,9 @@
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">致我最爱的小嘟嘟 💕</h1>
-            
+
             <!-- 生日倒计时 -->
-            <div class="countdown glass-card">
+            <div class="countdown glass-card" id="countdown">
                 <div class="countdown-text">距离你的生日还有</div>
                 <div class="countdown-numbers">
                     <div class="countdown-unit">
@@ -47,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 在一起天数 - 实时跳动 -->
             <div class="days-together glass-card">
                 <div class="days-together-text">我们已经在一起</div>
@@ -71,7 +77,7 @@
                 </div>
                 <div class="days-together-note">从 2018 年暑期到现在 💕</div>
             </div>
-            
+
             <!-- 日历热力图 - 在一起的每一天 -->
             <div class="calendar-heatmap glass-card">
                 <div class="calendar-heatmap-title">在一起的每一天 💖</div>
@@ -94,17 +100,18 @@
                         <span>深刻</span>
                     </div>
                     <div class="calendar-legend-item">
-                        <div class="calendar-legend-dot" style="background: linear-gradient(135deg, #E8B4B8 0%, #A67F8E 100%);"></div>
+                        <div class="calendar-legend-dot"
+                            style="background: linear-gradient(135deg, #E8B4B8 0%, #A67F8E 100%);"></div>
                         <span>特殊</span>
                     </div>
                 </div>
             </div>
-            
+
             <!-- 打字机效果情话 -->
             <p class="hero-subtitle" id="loveQuote">
                 <span id="typewriterText"></span><span class="typewriter"></span>
             </p>
-            
+
             <button class="cta-button" onclick="window.location.href='story.html'">
                 打开我们的故事 →
             </button>
@@ -146,7 +153,8 @@
     <script src="js/calendar-heatmap.js"></script>
     <script src="js/main.js"></script>
     <script src="js/easter-eggs.js"></script>
-    
+    <script src="js/modern-effects.js"></script>
+
     <!-- PWA Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -158,4 +166,5 @@
         }
     </script>
 </body>
+
 </html>
