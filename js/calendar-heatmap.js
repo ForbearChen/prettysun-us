@@ -258,6 +258,11 @@ function expandYearDetails(year) {
     // 生成月份热力图
     const modalBody = document.getElementById('yearModalBody');
     for (let month = 0; month < 12; month++) {
+        // 2018年只显示7-12月 (因为在一起是从7月开始)
+        if (year === 2018 && month < 6) {
+            continue;
+        }
+
         const monthElement = createMonthHeatmap(year, month);
         modalBody.appendChild(monthElement);
     }
