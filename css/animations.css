@@ -1,0 +1,499 @@
+/**
+ * 现代动画库 - 流畅的微交互动画
+ * 针对移动端和iPhone 14 Pro优化
+ */
+
+/* ========== 1. 页面加载动画 ========== */
+@keyframes pageLoad {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.page-load-animation {
+    animation: pageLoad 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== 2. 卡片入场动画 ========== */
+@keyframes cardSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card-slide-in {
+    animation: cardSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 延迟动画 - 瀑布流效果 */
+.card-slide-in:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.card-slide-in:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card-slide-in:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.card-slide-in:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.card-slide-in:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.card-slide-in:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* ========== 3. 数字滚动动画 ========== */
+@keyframes numberRoll {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.number-roll {
+    display: inline-block;
+    animation: numberRoll 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== 4. 渐变背景流动 ========== */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-flow {
+    background-size: 200% 200%;
+    animation: gradientFlow 8s ease infinite;
+}
+
+/* ========== 5. 呼吸光效 ========== */
+@keyframes breathe {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(255, 107, 157, 0.6);
+    }
+}
+
+.breathe-glow {
+    animation: breathe 3s ease-in-out infinite;
+}
+
+/* ========== 6. 弹跳入场 ========== */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== 7. 摇摆动画 ========== */
+@keyframes swing {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+}
+
+.swing {
+    transform-origin: top center;
+    animation: swing 1s ease-in-out;
+}
+
+/* ========== 8. 闪烁星星 ========== */
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+}
+
+.twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.twinkle:nth-child(odd) {
+    animation-delay: 0.5s;
+}
+
+/* ========== 9. 波纹扩散 ========== */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+/* ========== 10. 3D翻转卡片 ========== */
+.flip-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card:hover {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* ========== 11. 磁性悬浮 ========== */
+@keyframes magneticFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-5px) translateX(3px);
+    }
+
+    50% {
+        transform: translateY(0) translateX(-3px);
+    }
+
+    75% {
+        transform: translateY(5px) translateX(2px);
+    }
+}
+
+.magnetic-float {
+    animation: magneticFloat 4s ease-in-out infinite;
+}
+
+/* ========== 12. 打字机效果增强 ========== */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: var(--primary, #FF6B9D);
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid;
+    white-space: nowrap;
+    animation:
+        typing 3.5s steps(40, end),
+        blink 0.75s step-end infinite;
+}
+
+/* ========== 13. 粒子爆炸 ========== */
+@keyframes particleExplode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+.particle {
+    animation: particleExplode 1s ease-out forwards;
+}
+
+/* ========== 14. 彩虹边框 ========== */
+@keyframes rainbowBorder {
+
+    0%,
+    100% {
+        border-color: #FF6B9D;
+    }
+
+    25% {
+        border-color: #FFD166;
+    }
+
+    50% {
+        border-color: #00D4FF;
+    }
+
+    75% {
+        border-color: #A66BFF;
+    }
+}
+
+.rainbow-border {
+    border: 2px solid;
+    animation: rainbowBorder 3s linear infinite;
+}
+
+/* ========== 15. 滑动显示 ========== */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== 16. 脉冲缩放 ========== */
+@keyframes pulseScale {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse-scale {
+    animation: pulseScale 2s ease-in-out infinite;
+}
+
+/* ========== 17. 旋转加载 ========== */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+/* ========== 18. 渐变文字动画 ========== */
+@keyframes gradientText {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animated-gradient-text {
+    background: linear-gradient(90deg, #FF6B9D, #FFD166, #00D4FF, #A66BFF, #FF6B9D);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientText 3s ease infinite;
+}
+
+/* ========== 19. 心跳动画 ========== */
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    10%,
+    30% {
+        transform: scale(0.9);
+    }
+
+    20%,
+    40% {
+        transform: scale(1.1);
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 1.3s ease-in-out infinite;
+}
+
+/* ========== 20. 移动端优化 - 触摸反馈 ========== */
+@media (hover: none) and (pointer: coarse) {
+
+    /* 移动端点击反馈 */
+    .touch-feedback:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+        transition: all 0.1s ease;
+    }
+
+    /* 禁用悬浮动画 */
+    .flip-card:hover {
+        transform: none;
+    }
+
+    /* 点击触发翻转 */
+    .flip-card.flipped {
+        transform: rotateY(180deg);
+    }
+}
+
+/* ========== 21. 性能优化 ========== */
+.optimized-animation {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 动画完成后移除will-change */
+.animation-complete {
+    will-change: auto;
+}

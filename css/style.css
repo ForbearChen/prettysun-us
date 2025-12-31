@@ -1343,3 +1343,227 @@ html {
         gap: 10px;
     }
 }
+
+/* ========== Calendar Year View Styles ========== */
+.calendar-years-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.calendar-year-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-card);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 2px solid transparent;
+}
+
+.calendar-year-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(232, 180, 184, 0.3);
+    border-color: var(--primary);
+}
+
+.calendar-year-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Playfair Display', serif;
+}
+
+.calendar-year-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(232, 180, 184, 0.2);
+}
+
+.year-stat-item {
+    text-align: center;
+}
+
+.year-stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.year-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+.calendar-year-preview {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-top: var(--spacing-sm);
+}
+
+.calendar-month-block {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.calendar-month-block:hover {
+    transform: scale(1.2);
+}
+
+/* Year Modal */
+.calendar-year-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.calendar-year-modal.show {
+    opacity: 1;
+}
+
+.calendar-year-modal-content {
+    background: white;
+    border-radius: var(--radius-card);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideUp 0.4s ease;
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.calendar-year-modal-header {
+    padding: var(--spacing-md);
+    border-bottom: 2px solid var(--secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+}
+
+.calendar-year-modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.calendar-year-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.calendar-year-modal-close:hover {
+    transform: rotate(90deg);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-year-modal-body {
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.calendar-month-heatmap {
+    margin-bottom: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-card);
+    padding: var(--spacing-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-month-heatmap-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.calendar-month-days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+    gap: 8px;
+}
+
+.calendar-day-number {
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-empty-month {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--text);
+    opacity: 0.5;
+    font-style: italic;
+}
+
+/* Responsive adjustments for year view */
+@media (min-width: 768px) {
+    .calendar-years-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+    
+    .calendar-month-days-grid {
+        grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .calendar-years-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

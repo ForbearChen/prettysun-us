@@ -1,0 +1,390 @@
+/* ========== 现代化视觉升级 - iPhone 14 Pro 优化 ========== */
+
+/* 1. 更新色彩系统 - 更现代的渐变色 */
+:root {
+    /* 主色调 - 现代玫瑰金系 */
+    --primary: #FF6B9D;          /* 活力粉 */
+    --primary-light: #FFB6D9;    /* 浅粉 */
+    --primary-dark: #E63980;     /* 深粉 */
+    
+    --secondary: #A66BFF;        /* 紫罗兰 */
+    --secondary-light: #D4B5FF;  /* 浅紫 */
+    
+    --accent: #00D4FF;           /* 青色 */
+    --accent-warm: #FFD166;      /* 暖黄 */
+    
+    --background: #0F0F1E;       /* 深色背景（可选暗色模式） */
+    --background-light: #FFFFFF; /* 亮色背景 */
+    --surface: #F8F9FA;          /* 卡片背景 */
+    
+    --text: #1A1A2E;             /* 主文字 */
+    --text-secondary: #6B7280;   /* 次要文字 */
+    
+    /* 现代渐变 */
+    --gradient-primary: linear-gradient(135deg, #FF6B9D 0%, #A66BFF 100%);
+    --gradient-warm: linear-gradient(135deg, #FFD166 0%, #FF6B9D 100%);
+    --gradient-cool: linear-gradient(135deg, #00D4FF 0%, #A66BFF 100%);
+    --gradient-rainbow: linear-gradient(135deg, #FF6B9D 0%, #FFD166 25%, #00D4FF 50%, #A66BFF 75%, #FF6B9D 100%);
+    
+    /* 玻璃态效果 */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    /* 新阴影系统 - 更柔和 */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+    --shadow-colored: 0 8px 32px rgba(255, 107, 157, 0.3);
+    
+    /* 圆角系统 */
+    --radius-xs: 8px;
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+    
+    /* 间距系统 */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    
+    /* 动画时长 */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    
+    /* 缓动函数 */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 2. 全局优化 - 性能和流畅度 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, #FFF5F7 0%, #FFE5EC 50%, #FFF0F5 100%);
+    background-attachment: fixed;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: 16px;
+    position: relative;
+}
+
+/* iPhone 14 Pro 优化 - 安全区域 */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+}
+
+/* 3. 现代玻璃态卡片 */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-6);
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 4. 流体动画背景 */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(166, 107, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+    animation: fluidMove 20s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes fluidMove {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -50px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+    }
+}
+
+/* 5. 微交互动画 */
+.interactive-element {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.interactive-element::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.interactive-element:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* 6. 现代按钮样式 */
+.modern-button {
+    position: relative;
+    padding: var(--space-4) var(--space-8);
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    box-shadow: var(--shadow-colored);
+}
+
+.modern-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.modern-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 107, 157, 0.4);
+}
+
+.modern-button:hover::before {
+    left: 100%;
+}
+
+.modern-button:active {
+    transform: translateY(0);
+}
+
+/* 7. 卡片悬浮效果 */
+.floating-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 8. 渐变文字 */
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* 9. 脉冲动画 */
+.pulse-ring {
+    position: relative;
+}
+
+.pulse-ring::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 10. 滚动进入动画 */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 11. 加载骨架屏 */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 12. 触摸反馈 - 移动端优化 */
+@media (hover: none) and (pointer: coarse) {
+    .interactive-element:active {
+        transform: scale(0.97);
+    }
+    
+    .modern-button:active {
+        transform: scale(0.95);
+    }
+    
+    .glass-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* 13. 性能优化 - 硬件加速 */
+.hardware-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 14. 视差滚动效果 */
+.parallax {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 15. 响应式字体 - 流体排版 */
+.fluid-text-xl {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.fluid-text-lg {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.fluid-text-md {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* 16. iPhone 14 Pro 特定优化 */
+@media (min-width: 390px) and (max-width: 430px) and (-webkit-device-pixel-ratio: 3) {
+    /* iPhone 14 Pro / Pro Max */
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        letter-spacing: -0.02em;
+    }
+    
+    .glass-card {
+        padding: var(--space-5);
+        border-radius: var(--radius-xl);
+    }
+    
+    /* 优化触摸目标大小 */
+    button, a, .interactive-element {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* 17. 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-light: #1A1A2E;
+        --surface: #16213E;
+        --text: #E4E4E7;
+        --text-secondary: #A1A1AA;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #0F0F1E 0%, #1A1A2E 50%, #16213E 100%);
+    }
+    
+    .glass-card {
+        background: rgba(22, 33, 62, 0.7);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* 18. 减少动画 - 尊重用户偏好 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
