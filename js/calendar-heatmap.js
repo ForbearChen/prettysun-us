@@ -1,19 +1,17 @@
 /**
- * Calendar Heatmap Component
- * 显示从恋爱开始日期到当前的每一天
- * 使用温暖的蓝色渐变配色方案
+ * Calendar Heatmap Component - Year View with Month Expansion
+ * 年份视图日历热力图，点击年份展开月份详情
+ * 从2018年开始到2025年
  */
 
-// 恋爱开始日期：2024-10-08
-const LOVE_START_DATE = new Date('2024-10-08T00:00:00');
+// 恋爱开始日期：2018年7月1日
+const LOVE_START_DATE = new Date('2018-07-01T00:00:00');
 
-// 等级计算种子乘数（用于伪随机生成 0-4 的等级）
-const LEVEL_SEED_MULTIPLIER = 7;
-const MAX_LEVEL = 4; // 最大等级值（0-4 共5个等级）
-const NUM_LEVELS = MAX_LEVEL + 1; // 总共的等级数量
+// 年份范围：2018-2025
+const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
 // 动画常量
-const ANIMATION_FRAME_RATE_MS = 16; // 约60fps的帧率
+const ANIMATION_FRAME_RATE_MS = 16; // 约60fps
 
 /**
  * 格式化日期为 YYYY-MM-DD
@@ -31,18 +29,24 @@ function formatDate(date) {
 function generateSpecialDays() {
     const specialDays = {};
     const startDate = new Date(LOVE_START_DATE);
-    
+
     // 第一天
     specialDays[formatDate(startDate)] = '在一起的第一天 💕';
-    
-    // 动态生成每个月纪念日（最多计算到当前日期之后3个月）
+
+    // 生日：每年1月12日
+    for (let year = 2018; year <= 2026; year++) {
+        const birthday = new Date(year, 0, 12); // 1月12日
+        specialDays[formatDate(birthday)] = '生日 🎂';
+    }
+
+    // 动态生成每个月纪念日
     const endDate = new Date();
-    endDate.setMonth(endDate.getMonth() + 3);
-    
+    endDate.setFullYear(2025, 11, 31); // 到2025年底
+
     let monthCount = 1;
     let currentDate = new Date(startDate);
     currentDate.setMonth(currentDate.getMonth() + monthCount);
-    
+
     while (currentDate <= endDate) {
         const dateStr = formatDate(currentDate);
         if (monthCount === 1) {
@@ -61,15 +65,15 @@ function generateSpecialDays() {
         currentDate = new Date(startDate);
         currentDate.setMonth(currentDate.getMonth() + monthCount);
     }
-    
+
     return specialDays;
 }
 
-// 特殊日子标记（动态生成）
+// 特殊日子标记
 const SPECIAL_DAYS = generateSpecialDays();
 
 /**
- * 初始化日历热力图
+ * 初始化日历热力图 - 年份视图
  */
 function initCalendarHeatmap() {
     const container = document.getElementById('calendarHeatmapContent');
@@ -77,88 +81,285 @@ function initCalendarHeatmap() {
         console.warn('Calendar heatmap container not found');
         return;
     }
-    
-    const now = new Date();
-    const days = getDaysBetween(LOVE_START_DATE, now);
-    
-    // 按月分组
-    const monthsData = groupDaysByMonth(LOVE_START_DATE, now);
-    
-    // 渲染每个月
-    monthsData.forEach(monthData => {
-        const monthElement = createMonthElement(monthData);
-        container.appendChild(monthElement);
+
+    // 清空容器
+    container.innerHTML = '';
+
+    // 创建年份网格容器
+    const yearsGrid = document.createElement('div');
+    yearsGrid.className = 'calendar-years-grid';
+
+    // 为每个年份创建卡片
+    YEARS.forEach(year => {
+        const yearCard = createYearCard(year);
+        yearsGrid.appendChild(yearCard);
     });
-    
-    // 更新统计信息
-    updateStats(days);
+
+    container.appendChild(yearsGrid);
+
+    // 更新总天数统计
+    const now = new Date();
+    const totalDays = getDaysBetween(LOVE_START_DATE, now);
+    updateStats(totalDays);
 }
 
 /**
- * 获取两个日期之间的天数
+ * 创建年份卡片
  */
-function getDaysBetween(startDate, endDate) {
-    const diffTime = Math.abs(endDate - startDate);
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+function createYearCard(year) {
+    const card = document.createElement('div');
+    card.className = 'calendar-year-card';
+
+    // 年份标题
+    const title = document.createElement('div');
+    title.className = 'calendar-year-title';
+    title.textContent = `${year}年`;
+    card.appendChild(title);
+
+    // 计算这一年的天数和活跃度
+    const yearStats = calculateYearStats(year);
+
+    // 统计信息
+    const stats = document.createElement('div');
+    stats.className = 'calendar-year-stats';
+    stats.innerHTML = `
+        <div class="year-stat-item">
+            <span class="year-stat-number">${yearStats.days}</span>
+            <span class="year-stat-label">天</span>
+        </div>
+        <div class="year-stat-item">
+            <span class="year-stat-number">${yearStats.specialDays}</span>
+            <span class="year-stat-label">特殊日</span>
+        </div>
+    `;
+    card.appendChild(stats);
+
+    // 简化的年度热力图预览（12个月的小方块）
+    const preview = document.createElement('div');
+    preview.className = 'calendar-year-preview';
+    for (let month = 0; month < 12; month++) {
+        const monthBlock = document.createElement('div');
+        monthBlock.className = 'calendar-month-block';
+        const monthLevel = calculateMonthLevel(year, month);
+        monthBlock.classList.add(`level-${monthLevel}`);
+        monthBlock.title = `${month + 1}月`;
+        preview.appendChild(monthBlock);
+    }
+    card.appendChild(preview);
+
+    // 点击展开月份详情
+    card.addEventListener('click', () => {
+        expandYearDetails(year);
+    });
+
+    return card;
 }
 
 /**
- * 按月分组日期
+ * 计算年份统计信息
  */
-function groupDaysByMonth(startDate, endDate) {
-    const monthsData = [];
-    const currentDate = new Date(startDate);
-    
-    while (currentDate <= endDate) {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        
-        // 检查是否是新的月份
-        const lastMonth = monthsData[monthsData.length - 1];
-        if (!lastMonth || lastMonth.year !== year || lastMonth.month !== month) {
-            monthsData.push({
-                year: year,
-                month: month,
-                days: []
-            });
+function calculateYearStats(year) {
+    const yearStart = new Date(year, 0, 1);
+    const yearEnd = new Date(year, 11, 31);
+    const now = new Date();
+
+    // 确定实际的开始和结束日期
+    const actualStart = yearStart < LOVE_START_DATE ? LOVE_START_DATE : yearStart;
+    const actualEnd = yearEnd > now ? now : yearEnd;
+
+    let days = 0;
+    let specialDays = 0;
+
+    if (actualStart <= actualEnd) {
+        days = getDaysBetween(actualStart, actualEnd) + 1;
+
+        // 计算特殊日子数量
+        const currentDate = new Date(actualStart);
+        while (currentDate <= actualEnd) {
+            const dateStr = formatDate(currentDate);
+            if (dateStr in SPECIAL_DAYS) {
+                specialDays++;
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
         }
-        
-        // 添加日期到当前月份
+    }
+
+    return { days, specialDays };
+}
+
+/**
+ * 计算月份的活跃度等级
+ */
+function calculateMonthLevel(year, month) {
+    const monthStart = new Date(year, month, 1);
+    const monthEnd = new Date(year, month + 1, 0);
+    const now = new Date();
+
+    const actualStart = monthStart < LOVE_START_DATE ? LOVE_START_DATE : monthStart;
+    const actualEnd = monthEnd > now ? now : monthEnd;
+
+    if (actualStart > actualEnd) {
+        return 0; // 还未到达的月份
+    }
+
+    // 计算这个月的特殊日子数量
+    let specialCount = 0;
+    const currentDate = new Date(actualStart);
+    while (currentDate <= actualEnd) {
         const dateStr = formatDate(currentDate);
-        const isSpecial = dateStr in SPECIAL_DAYS;
-        const level = calculateLevel(currentDate);
-        
-        monthsData[monthsData.length - 1].days.push({
-            date: new Date(currentDate),
-            dateStr: dateStr,
-            isSpecial: isSpecial,
-            specialText: isSpecial ? SPECIAL_DAYS[dateStr] : '',
-            level: level
-        });
-        
-        // 移动到下一天
+        if (dateStr in SPECIAL_DAYS) {
+            specialCount++;
+        }
         currentDate.setDate(currentDate.getDate() + 1);
     }
-    
-    return monthsData;
+
+    // 根据特殊日子数量返回等级
+    if (specialCount >= 2) return 4;
+    if (specialCount === 1) return 3;
+
+    // 否则基于月份的伪随机等级
+    return (year + month * 7) % 3 + 1; // 1-3
 }
 
 /**
- * 计算日期的强度等级 (0-4)
- * 可以基于特定逻辑，这里简单使用伪随机
+ * 展开年份详情 - 显示12个月的热力图
  */
-function calculateLevel(date) {
-    // 特殊日子使用特殊标记
+function expandYearDetails(year) {
+    const container = document.getElementById('calendarHeatmapContent');
+
+    // 创建模态框
+    const modal = document.createElement('div');
+    modal.className = 'calendar-year-modal';
+    modal.innerHTML = `
+        <div class="calendar-year-modal-content">
+            <div class="calendar-year-modal-header">
+                <h3>${year}年详情</h3>
+                <button class="calendar-year-modal-close">×</button>
+            </div>
+            <div class="calendar-year-modal-body" id="yearModalBody"></div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // 关闭按钮
+    const closeBtn = modal.querySelector('.calendar-year-modal-close');
+    closeBtn.addEventListener('click', () => {
+        modal.remove();
+    });
+
+    // 点击背景关闭
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+
+    // 生成月份热力图
+    const modalBody = document.getElementById('yearModalBody');
+    for (let month = 0; month < 12; month++) {
+        const monthElement = createMonthHeatmap(year, month);
+        modalBody.appendChild(monthElement);
+    }
+
+    // 显示动画
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+}
+
+/**
+ * 创建月份热力图
+ */
+function createMonthHeatmap(year, month) {
+    const monthDiv = document.createElement('div');
+    monthDiv.className = 'calendar-month-heatmap';
+
+    // 月份标题
+    const monthNames = [
+        '一月', '二月', '三月', '四月', '五月', '六月',
+        '七月', '八月', '九月', '十月', '十一月', '十二月'
+    ];
+    const title = document.createElement('div');
+    title.className = 'calendar-month-heatmap-title';
+    title.textContent = monthNames[month];
+    monthDiv.appendChild(title);
+
+    // 日期网格
+    const daysGrid = document.createElement('div');
+    daysGrid.className = 'calendar-month-days-grid';
+
+    // 获取这个月的所有日期
+    const monthStart = new Date(year, month, 1);
+    const monthEnd = new Date(year, month + 1, 0);
+    const now = new Date();
+
+    const actualStart = monthStart < LOVE_START_DATE ? LOVE_START_DATE : monthStart;
+    const actualEnd = monthEnd > now ? now : monthEnd;
+
+    if (actualStart <= actualEnd) {
+        const currentDate = new Date(actualStart);
+        while (currentDate <= actualEnd) {
+            const dayElement = createDayElement(currentDate);
+            daysGrid.appendChild(dayElement);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+    } else {
+        // 还未到达的月份
+        const emptyMsg = document.createElement('div');
+        emptyMsg.className = 'calendar-empty-month';
+        emptyMsg.textContent = '未来的日子 ✨';
+        daysGrid.appendChild(emptyMsg);
+    }
+
+    monthDiv.appendChild(daysGrid);
+    return monthDiv;
+}
+
+/**
+ * 创建日期元素
+ */
+function createDayElement(date) {
+    const dayDiv = document.createElement('div');
+    const dateStr = formatDate(date);
+    const isSpecial = dateStr in SPECIAL_DAYS;
+
+    if (isSpecial) {
+        dayDiv.className = 'calendar-day special';
+    } else {
+        const level = calculateDayLevel(date);
+        dayDiv.className = `calendar-day level-${level}`;
+    }
+
+    // 日期数字
+    const dayNumber = document.createElement('span');
+    dayNumber.className = 'calendar-day-number';
+    dayNumber.textContent = date.getDate();
+    dayDiv.appendChild(dayNumber);
+
+    // 提示框
+    const tooltip = document.createElement('div');
+    tooltip.className = 'calendar-day-tooltip';
+    tooltip.textContent = isSpecial
+        ? `${formatDateDisplay(date)} - ${SPECIAL_DAYS[dateStr]}`
+        : formatDateDisplay(date);
+    dayDiv.appendChild(tooltip);
+
+    return dayDiv;
+}
+
+/**
+ * 计算日期的强度等级 (1-4)
+ */
+function calculateDayLevel(date) {
     const dateStr = formatDate(date);
     if (dateStr in SPECIAL_DAYS) {
-        return 'special';
+        return 4; // 特殊日子最高等级
     }
-    
-    // 基于日期的简单伪随机等级
-    // 使用日期作为种子生成0-4的等级
+
+    // 基于日期的伪随机等级
     const dayOfYear = getDayOfYear(date);
-    const level = (dayOfYear * LEVEL_SEED_MULTIPLIER) % NUM_LEVELS; // 0-4
-    return level;
+    return (dayOfYear * 7) % 4 + 1; // 1-4
 }
 
 /**
@@ -182,65 +383,11 @@ function formatDateDisplay(date) {
 }
 
 /**
- * 获取月份名称
+ * 获取两个日期之间的天数
  */
-function getMonthName(year, month) {
-    const monthNames = [
-        '一月', '二月', '三月', '四月', '五月', '六月',
-        '七月', '八月', '九月', '十月', '十一月', '十二月'
-    ];
-    return `${year}年 ${monthNames[month]}`;
-}
-
-/**
- * 创建月份元素
- */
-function createMonthElement(monthData) {
-    const monthDiv = document.createElement('div');
-    monthDiv.className = 'calendar-month';
-    
-    // 月份标题
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'calendar-month-title';
-    titleDiv.textContent = getMonthName(monthData.year, monthData.month);
-    monthDiv.appendChild(titleDiv);
-    
-    // 日期网格
-    const daysDiv = document.createElement('div');
-    daysDiv.className = 'calendar-days';
-    
-    monthData.days.forEach(dayData => {
-        const dayElement = createDayElement(dayData);
-        daysDiv.appendChild(dayElement);
-    });
-    
-    monthDiv.appendChild(daysDiv);
-    
-    return monthDiv;
-}
-
-/**
- * 创建日期元素
- */
-function createDayElement(dayData) {
-    const dayDiv = document.createElement('div');
-    
-    if (dayData.isSpecial) {
-        dayDiv.className = 'calendar-day special';
-    } else {
-        dayDiv.className = `calendar-day level-${dayData.level}`;
-    }
-    
-    // 创建提示框
-    const tooltip = document.createElement('div');
-    tooltip.className = 'calendar-day-tooltip';
-    tooltip.textContent = dayData.isSpecial 
-        ? `${formatDateDisplay(dayData.date)} - ${dayData.specialText}`
-        : formatDateDisplay(dayData.date);
-    
-    dayDiv.appendChild(tooltip);
-    
-    return dayDiv;
+function getDaysBetween(startDate, endDate) {
+    const diffTime = Math.abs(endDate - startDate);
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 }
 
 /**
@@ -261,7 +408,7 @@ function animateNumber(element, start, end, duration) {
     const range = end - start;
     const increment = range / (duration / ANIMATION_FRAME_RATE_MS);
     let current = start;
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= end) {

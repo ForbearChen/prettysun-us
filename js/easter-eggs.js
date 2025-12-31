@@ -7,11 +7,11 @@
 function initMusicPlayer() {
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
-    
+
     if (!musicToggle || !bgMusic) return;
-    
+
     let isPlaying = false;
-    
+
     musicToggle.addEventListener('click', () => {
         if (isPlaying) {
             bgMusic.pause();
@@ -20,7 +20,7 @@ function initMusicPlayer() {
         } else {
             // 尝试播放音乐
             const playPromise = bgMusic.play();
-            
+
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
@@ -35,10 +35,10 @@ function initMusicPlayer() {
                     });
             }
         }
-        
+
         isPlaying = !isPlaying;
     });
-    
+
     // 检查音乐文件是否存在
     bgMusic.addEventListener('error', () => {
         console.log('音乐文件未找到');
@@ -60,7 +60,7 @@ function showMusicHint() {
         </p>
     `;
     document.body.appendChild(hint);
-    
+
     setTimeout(() => {
         hint.classList.remove('active');
         setTimeout(() => hint.remove(), 300);
@@ -79,18 +79,18 @@ function initSecretEntrance() {
     const submitPassword = document.getElementById('submitPassword');
     const modalClose = document.getElementById('modalClose');
     const passwordError = document.getElementById('passwordError');
-    
+
     if (!secretDot || !passwordModal) return;
-    
+
     // 点击秘密点
     secretDot.addEventListener('click', () => {
         secretClickCount++;
-        
+
         // 清除之前的计时器
         if (secretClickTimer) {
             clearTimeout(secretClickTimer);
         }
-        
+
         // 3秒内点击3次触发
         if (secretClickCount >= 3) {
             secretClickCount = 0;
@@ -102,24 +102,24 @@ function initSecretEntrance() {
             }, 3000);
         }
     });
-    
+
     // 关闭模态框
     if (modalClose) {
         modalClose.addEventListener('click', closePasswordModal);
     }
-    
+
     // 点击背景关闭
     passwordModal.addEventListener('click', (e) => {
         if (e.target === passwordModal) {
             closePasswordModal();
         }
     });
-    
+
     // 提交密码
     if (submitPassword) {
         submitPassword.addEventListener('click', checkPassword);
     }
-    
+
     // 回车提交
     if (passwordInput) {
         passwordInput.addEventListener('keypress', (e) => {
@@ -128,7 +128,7 @@ function initSecretEntrance() {
             }
         });
     }
-    
+
     function openPasswordModal() {
         passwordModal.classList.add('active');
         if (passwordInput) {
@@ -139,19 +139,19 @@ function initSecretEntrance() {
             passwordError.textContent = '';
         }
     }
-    
+
     function closePasswordModal() {
         passwordModal.classList.remove('active');
     }
-    
+
     function checkPassword() {
         const password = passwordInput ? passwordInput.value : '';
-        
+
         if (password === SECRET_PASSWORD) {
             // 密码正确，跳转到秘密页面
             passwordError.textContent = '✓ 密码正确！正在进入...';
             passwordError.style.color = '#4CAF50';
-            
+
             setTimeout(() => {
                 window.location.href = 'secret.html';
             }, 1000);
@@ -159,7 +159,7 @@ function initSecretEntrance() {
             // 密码错误
             passwordError.textContent = '密码不对哦，再想想～ 💭';
             passwordError.style.color = '#FF6B6B';
-            
+
             // 抖动效果
             passwordInput.style.animation = 'shake 0.5s';
             setTimeout(() => {
@@ -188,16 +188,16 @@ let birthdayEffectTriggered = false;
 function triggerBirthdayEffect() {
     if (birthdayEffectTriggered) return;
     birthdayEffectTriggered = true;
-    
+
     // 改变页面配色为喜庆样式
     document.body.style.background = 'linear-gradient(135deg, #FFE5E5 0%, #FFD4D4 50%, #FFC4C4 100%)';
-    
+
     // 显示生日祝福弹窗
     showBirthdayMessage();
-    
+
     // 触发烟花效果
     startFireworks();
-    
+
     // 播放气球动画
     createBalloons();
 }
@@ -222,7 +222,7 @@ function showBirthdayMessage() {
         </p>
     `;
     document.body.appendChild(message);
-    
+
     setTimeout(() => {
         message.classList.remove('active');
         setTimeout(() => message.remove(), 300);
@@ -235,9 +235,9 @@ function showBirthdayMessage() {
 function startFireworks() {
     const container = document.getElementById('birthdayEffect');
     if (!container) return;
-    
+
     const emojis = ['🎆', '🎇', '✨', '🎉', '🎊', '🎈', '🎁'];
-    
+
     function createFirework() {
         const firework = document.createElement('div');
         firework.className = 'firework';
@@ -245,10 +245,10 @@ function startFireworks() {
         firework.style.left = Math.random() * 100 + '%';
         firework.style.top = Math.random() * 100 + '%';
         container.appendChild(firework);
-        
+
         setTimeout(() => firework.remove(), 2000);
     }
-    
+
     // 持续30秒的烟花
     let count = 0;
     const interval = setInterval(() => {
@@ -266,9 +266,9 @@ function startFireworks() {
 function createBalloons() {
     const container = document.getElementById('birthdayEffect');
     if (!container) return;
-    
+
     const balloons = ['🎈', '🎈', '🎈', '🎈', '🎈'];
-    
+
     balloons.forEach((balloon, index) => {
         setTimeout(() => {
             const el = document.createElement('div');
@@ -280,178 +280,185 @@ function createBalloons() {
             el.style.transition = 'bottom 3s ease-out';
             el.style.zIndex = '1500';
             container.appendChild(el);
-            
+
             setTimeout(() => {
                 el.style.bottom = '110vh';
             }, 100);
-            
+
             setTimeout(() => el.remove(), 3500);
         }, index * 300);
     });
 }
 
-// ========== 彩蛋4: Konami 密码 🎮 ==========
-const KONAMI_CODE = [
-    'ArrowUp', 'ArrowUp', 
-    'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 
-    'ArrowLeft', 'ArrowRight',
-    'b', 'a'
-];
-let konamiProgress = 0;
+// ========== 彩蛋4: 爱心雨和彩虹效果 💖🌈 ==========
+// 简化触发方式：
+// - PC端：快速双击页面任意位置
+// - 移动端：双指同时触摸屏幕1秒以上
 
-function initKonamiCode() {
-    document.addEventListener('keydown', (e) => {
-        const key = e.key;
-        
-        // 检查是否匹配当前应该按的键
-        if (key.toLowerCase() === KONAMI_CODE[konamiProgress].toLowerCase()) {
-            konamiProgress++;
-            
-            // 完成整个序列
-            if (konamiProgress === KONAMI_CODE.length) {
-                triggerKonamiEffect();
-                konamiProgress = 0;
-            }
-        } else {
-            // 重置进度
-            konamiProgress = 0;
+let lastClickTime = 0;
+let doubleClickTriggered = false;
+
+/**
+ * 初始化简单彩蛋触发 - PC端双击
+ */
+function initSimpleEasterEgg() {
+    // PC端：双击触发
+    document.addEventListener('dblclick', (e) => {
+        // 避免在输入框等元素上触发
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') {
+            return;
         }
+
+        triggerLoveEffect();
     });
+
+    // 移动端：双指长按触发
+    initMobileLoveEffect();
 }
 
 /**
- * 移动端触摸手势检测
+ * 移动端双指触摸检测
  */
-function initMobileKonami() {
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let swipeSequence = [];
-    const requiredSequence = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right'];
-    let lastTapTime = 0;
-    let tapCount = 0;
-    
+function initMobileLoveEffect() {
+    let touchStartTime = 0;
+    let twoFingerTouch = false;
+    let touchTimer = null;
+
     document.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        
-        // 检测双击
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTapTime;
-        
-        if (tapLength < 300 && tapLength > 0) {
-            tapCount++;
-            if (tapCount === 2 && swipeSequence.length === 8) {
-                // 完成手势序列
-                triggerKonamiEffect();
-                swipeSequence = [];
-                tapCount = 0;
-            }
-        } else {
-            tapCount = 1;
+        // 检测是否是双指触摸
+        if (e.touches.length === 2) {
+            twoFingerTouch = true;
+            touchStartTime = Date.now();
+
+            // 设置1秒计时器
+            touchTimer = setTimeout(() => {
+                if (twoFingerTouch) {
+                    triggerLoveEffect();
+
+                    // 显示提示
+                    const hint = document.createElement('div');
+                    hint.className = 'easter-message active';
+                    hint.style.background = 'linear-gradient(135deg, #FFE5F0, #FFF0FA)';
+                    hint.innerHTML = `
+                        <p style="font-size: 1.2rem;">🎉 触发成功！</p>
+                    `;
+                    document.body.appendChild(hint);
+
+                    setTimeout(() => {
+                        hint.classList.remove('active');
+                        setTimeout(() => hint.remove(), 300);
+                    }, 1500);
+                }
+            }, 1000);
         }
-        
-        lastTapTime = currentTime;
     });
-    
+
     document.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const touchEndY = e.changedTouches[0].clientY;
-        
-        const diffX = touchEndX - touchStartX;
-        const diffY = touchEndY - touchStartY;
-        
-        // 判断滑动方向
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            // 水平滑动
-            if (diffX > 50) {
-                swipeSequence.push('right');
-            } else if (diffX < -50) {
-                swipeSequence.push('left');
-            }
-        } else {
-            // 垂直滑动
-            if (diffY > 50) {
-                swipeSequence.push('down');
-            } else if (diffY < -50) {
-                swipeSequence.push('up');
-            }
+        if (touchTimer) {
+            clearTimeout(touchTimer);
         }
-        
-        // 只保留最后8个手势
-        if (swipeSequence.length > 8) {
-            swipeSequence.shift();
+        twoFingerTouch = false;
+    });
+
+    document.addEventListener('touchcancel', (e) => {
+        if (touchTimer) {
+            clearTimeout(touchTimer);
         }
-        
-        // 检查序列是否匹配
-        if (swipeSequence.length === 8) {
-            const matches = requiredSequence.every((dir, i) => dir === swipeSequence[i]);
-            if (matches) {
-                // 等待双击确认
-                // 双击会在 touchstart 中检测
-            }
-        }
+        twoFingerTouch = false;
     });
 }
 
 /**
- * 触发 Konami 彩蛋效果
+ * 触发爱心雨和彩虹效果
  */
-function triggerKonamiEffect() {
-    // 显示隐藏消息
-    showKonamiMessage();
-    
+function triggerLoveEffect() {
+    // 显示提示消息
+    showLoveMessage();
+
     // 爱心雨效果
     createHeartRain();
-    
+
     // 彩虹渐变特效
     applyRainbowEffect();
 }
 
 /**
- * 显示 Konami 消息
+ * 显示爱心彩蛋消息
  */
-function showKonamiMessage() {
+function showLoveMessage() {
     const message = document.createElement('div');
     message.className = 'easter-message active';
     message.style.background = 'linear-gradient(135deg, #FFE5F0, #FFF0FA)';
     message.innerHTML = `
-        <h2>🎮 恭喜你！</h2>
+        <h2>💖 你发现了隐藏的小秘密！</h2>
         <p style="font-size: 1.2rem; margin: 1rem 0;">
-            你发现了隐藏的小秘密！❤️
+            爱心雨和彩虹特效 ✨
         </p>
         <p style="font-size: 0.9rem; opacity: 0.8;">
-            Konami Code 解锁成功 ✨
+            ${isMobileDevice() ? '双指长按触发' : '双击页面触发'}
         </p>
     `;
     document.body.appendChild(message);
-    
+
     setTimeout(() => {
         message.classList.remove('active');
         setTimeout(() => message.remove(), 300);
-    }, 4000);
+    }, 3000);
+}
+
+/**
+ * 检测是否是移动设备
+ */
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 /**
  * 爱心雨效果
  */
 function createHeartRain() {
-    const hearts = ['❤️', '💕', '💖', '💗', '💝', '💞'];
-    
-    for (let i = 0; i < 30; i++) {
+    const hearts = ['❤️', '💕', '💖', '💗', '💝', '💞', '💓', '💗'];
+
+    for (let i = 0; i < 40; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'heart-rain';
             heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = Math.random() * 100 + '%';
-            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.fontSize = (Math.random() * 25 + 25) + 'px';
             heart.style.position = 'fixed';
             heart.style.top = '-50px';
             heart.style.zIndex = '2000';
+            heart.style.animation = 'heartFall 3s linear forwards';
+            heart.style.opacity = '0.9';
+
+            // 添加随机旋转
+            const rotation = Math.random() * 360;
+            heart.style.transform = `rotate(${rotation}deg)`;
+
             document.body.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 3000);
-        }, i * 100);
+
+            setTimeout(() => heart.remove(), 3500);
+        }, i * 80);
+    }
+
+    // 添加爱心下落动画
+    if (!document.getElementById('heartFallStyle')) {
+        const style = document.createElement('style');
+        style.id = 'heartFallStyle';
+        style.textContent = `
+            @keyframes heartFall {
+                0% {
+                    top: -50px;
+                    opacity: 0.9;
+                }
+                100% {
+                    top: 110vh;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 }
 
@@ -460,12 +467,12 @@ function createHeartRain() {
  */
 function applyRainbowEffect() {
     const originalBg = document.body.style.background;
-    
+
     const rainbowGradient = 'linear-gradient(45deg, #FF6B6B, #FFD166, #06FFA5, #00D4FF, #A66BFF, #FF6B9D)';
     document.body.style.background = rainbowGradient;
     document.body.style.backgroundSize = '400% 400%';
     document.body.style.animation = 'rainbowMove 3s ease infinite';
-    
+
     // 添加彩虹动画
     if (!document.getElementById('rainbowStyle')) {
         const style = document.createElement('style');
@@ -479,21 +486,20 @@ function applyRainbowEffect() {
         `;
         document.head.appendChild(style);
     }
-    
-    // 5秒后恢复原背景
+
+    // 6秒后恢复原背景
     setTimeout(() => {
         document.body.style.background = originalBg;
         document.body.style.animation = '';
-    }, 5000);
+    }, 6000);
 }
 
 // ========== 初始化所有彩蛋 ==========
 document.addEventListener('DOMContentLoaded', () => {
     initMusicPlayer();
     initSecretEntrance();
-    initKonamiCode();
-    initMobileKonami();
-    
+    initSimpleEasterEgg(); // 简化的爱心雨和彩虹效果触发
+
     // 检查是否是生日
     const now = new Date();
     if (now.getMonth() === 0 && now.getDate() === 12) { // 1月12日
