@@ -30,40 +30,55 @@ function generateSpecialDays() {
     const specialDays = {};
     const startDate = new Date(LOVE_START_DATE);
 
-    // 第一天
-    specialDays[formatDate(startDate)] = '在一起的第一天 💕';
+    // 不再标记“在一起的第一天”，只保留生日等特殊日
 
     // 生日：每年1月12日
-    for (let year = 2018; year <= 2026; year++) {
-        const birthday = new Date(year, 0, 12); // 1月12日
-        specialDays[formatDate(birthday)] = '生日 🎂';
+    // 使用农历标记生日（例如：农历十一月二十四）
+    // 我们通过 Intl.DateTimeFormat (chinese calendar) 把公历日期转换为农历，并寻找匹配的月/日
+    const lunarBirthdayMonth = 11; // 农历月（十一月）
+    const lunarBirthdayDay = 24;   // 农历日（廿四）
+
+    // 找到每年对应的公历日期（从 LOVE_START_DATE 年开始到 2026 年）
+    const startYear = startDate.getFullYear();
+    const endYear = 2026;
+
+    // Helper: 判断某个公历日期对应的农历月/日是否匹配
+    function isLunarMatch(date, targetLunarMonth, targetLunarDay) {
+        try {
+            const dtf = new Intl.DateTimeFormat('zh-CN-u-ca-chinese', { month: 'numeric', day: 'numeric' });
+            const parts = dtf.formatToParts(date);
+            let m = null, d = null;
+            parts.forEach(p => {
+                if (p.type === 'month') m = Number(p.value);
+                if (p.type === 'day') d = Number(p.value);
+            });
+            return m === targetLunarMonth && d === targetLunarDay;
+        } catch (e) {
+            // 如果环境不支持该 Intl 日历，回退到公历固定日期 (1月12日) 作为备选
+            return false;
+        }
     }
 
-    // 动态生成每个月纪念日
-    const endDate = new Date();
-    endDate.setFullYear(2025, 11, 31); // 到2025年底
-
-    let monthCount = 1;
-    let currentDate = new Date(startDate);
-    currentDate.setMonth(currentDate.getMonth() + monthCount);
-
-    while (currentDate <= endDate) {
-        const dateStr = formatDate(currentDate);
-        if (monthCount === 1) {
-            specialDays[dateStr] = '在一起一个月 🎉';
-        } else if (monthCount === 2) {
-            specialDays[dateStr] = '在一起两个月 🎊';
-        } else if (monthCount === 3) {
-            specialDays[dateStr] = '在一起三个月 💖';
-        } else if (monthCount % 12 === 0) {
-            const years = monthCount / 12;
-            specialDays[dateStr] = `在一起${years}周年 🎂`;
-        } else if (monthCount % 6 === 0) {
-            specialDays[dateStr] = `在一起${monthCount}个月 🎈`;
+    for (let year = startYear; year <= endYear; year++) {
+        // 遍历该年所有日期，寻找农历匹配日（性能足够：每年最多 366 次判断）
+        const yearStart = new Date(year, 0, 1);
+        const yearEnd = new Date(year, 11, 31);
+        let d = new Date(yearStart);
+        let found = false;
+        while (d <= yearEnd) {
+            if (isLunarMatch(d, lunarBirthdayMonth, lunarBirthdayDay)) {
+                specialDays[formatDate(d)] = '生日（农历） 🎂';
+                found = true;
+                break;
+            }
+            d.setDate(d.getDate() + 1);
         }
-        monthCount++;
-        currentDate = new Date(startDate);
-        currentDate.setMonth(currentDate.getMonth() + monthCount);
+
+        // 兼容性回退：如果没有找到（例如 Intl 不支持），使用公历 1 月 12 日 作为备用生日标记
+        if (!found) {
+            const fallback = new Date(year, 0, 12);
+            specialDays[formatDate(fallback)] = '生日 🎂';
+        }
     }
 
     return specialDays;
@@ -330,7 +345,12 @@ function createDayElement(date) {
     const isSpecial = dateStr in SPECIAL_DAYS;
 
     if (isSpecial) {
-        dayDiv.className = 'calendar-day special';
+        const label = SPECIAL_DAYS[dateStr] || '';
+        if (label.includes('生日')) {
+            dayDiv.className = 'calendar-day birthday';
+        } else {
+            dayDiv.className = 'calendar-day special';
+        }
     } else {
         const level = calculateDayLevel(date);
         dayDiv.className = `calendar-day level-${level}`;
