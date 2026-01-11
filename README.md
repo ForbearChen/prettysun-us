@@ -1,316 +1,108 @@
-# 🌻 PrettySun - 致我最爱的小嘟嘟
+# � PrettySun (PrettySun-US)
 
-一个温暖浪漫的生日纪念网站，记录从2018年暑期至今的美好回忆，隐藏着多个惊喜彩蛋。
+> 为最爱的人打造的专属浪漫纪念网站 💕
+> A romantic anniversary website crafted for your loved one.
 
-## ✨ 在线演示
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-🔗 **访问地址**: [https://forbearchen.github.io/prettysun-us/](https://forbearchen.github.io/prettysun-us/)
+## ✨ 项目简介
 
-## 📋 功能特性
+这不仅是一个网站，更是一份凝聚了时光与爱意的礼物。这个项目专为记录情侣间的甜蜜时光而设计，采用最新的 Web 技术，打造出极致流畅、视觉惊艳的交互体验。
 
-### 核心功能
+项目的核心围绕"陪伴"与"记忆"，通过现代化的设计语言（Glassmorphism 玻璃态、流体渐变、微交互）呈现出温暖而高级的视觉效果。
 
-- 🎂 **生日倒计时**: 自动计算到下一个1月12日的倒计时
-- ⏰ **在一起时间**: 从 2018年7月1日 开始，实时计算在一起的天、时、分、秒
-- 📅 **日历热力图**: 年份视图（2018-2025），点击年份展开月份详情，可视化每一天
-- 📖 **故事相册**: 6个章节（读书、美食、旅行、日常、扶持、未来）展示照片和回忆
-- 💌 **秘密花园**: 需要密码访问的私密情书空间
-- 📱 **PWA 支持**: 可添加到手机主屏幕，支持离线访问
-- 🔄 **实时更新**: 禁用缓存，确保每次访问都是最新内容
+## 🎨 核心特性
 
-### 五个隐藏彩蛋 🎁
+### 1. 极致视觉体验
 
-1. **🎵 音乐播放器**: 右下角音符图标，点击播放背景音乐
-2. **🔐 秘密入口**: 页脚小点点击3次，输入密码 `sun3469220` 进入秘密花园
-3. **🎂 生日特效**: 每年1月12日访问自动触发烟花和气球特效
-4. **💖 爱心雨和彩虹**: PC端双击页面，移动端双指长按1秒，触发爱心雨和彩虹效果
-5. **✍️ 打字机效果**: 首页自动打字显示"余生很长，只想和你走"
+- **玻璃态设计 (Glassmorphism)**: 全局采用高斯模糊与半透明层叠，营造通透的高级感。
+- **现代化配色**: 精心调配的暖粉紫渐变色系 (#FF6B9D → #A66BFF)，摒弃了传统的冷色调，充满浪漫气息。
+- **流体动效背景**: 动态流转的色彩球体，为页面增添梦幻氛围。
 
-## 🎨 设计特色
+### 2. 沉浸式交互
 
-- **暖色系配色**: 温暖橙 + 柔和黄 + 米白色的舒适配色
-- **优雅字体**: 结合衬线字体和无衬线字体
-- **流畅动画**: 平滑过渡、悬停效果、渐入动画
-- **响应式设计**: 完美适配手机、平板和桌面设备
+- **21+ 微交互动画**: 包括磁性按钮、3D 卡片倾斜、数字滚动、心跳特效等。
+- **iPhone 14 Pro 适配**: 针对移动端进行了像素级优化，支持触觉反馈 (Haptic Feedback) 和流体排版。
+- **彩蛋系统**:
+  - PC端：双击屏幕触发"爱心雨"与"彩虹特效"。
+  - 移动端：双指长按屏幕触发相同的惊喜。
+- **平滑滚动与视差效果**: 浏览体验如丝般顺滑。
+
+### 3. 数据可视化记忆
+
+- **恋爱日历热力图**: 仿 GitHub 提交记录的风格，记录从 **2018年** 至今的每一个甜蜜日子。
+  - *智能逻辑*：2018年自动隐藏前6个月（恋爱开始前），只展示属于我们的真正时光。
+- **时光计数器**: 实时计算"我们已经在一起"的日夜，秒级更新。
+- **倒计时**: 自动计算下一个生日或纪念日的剩余时间。
 
 ## 🛠️ 技术栈
 
-- 纯原生 HTML5 + CSS3 + JavaScript
-- PWA（Progressive Web App）
-- Service Worker 离线缓存
-- CSS Grid 瀑布流布局
-- Intersection Observer 图片懒加载
+本项目坚持使用**原生技术**以保证最佳性能和可定制性，无需繁重的构建工具即可运行。
 
-## 📝 如何自定义内容
+- **HTML5**: 语义化标签，SEO 友好。
+- **CSS3 (Vanilla)**:
+  - 大量使用 CSS Variables 实现动态主题。
+  - `backdrop-filter` 实现真实的毛玻璃效果。
+  - 关键帧动画 (`@keyframes`) 实现复杂动效。
+- **JavaScript (Vanilla)**:
+  - ES6+ 语法。
+  - `Intersection Observer` 实现高性能滚动侦测。
+  - 模块化封装 `modernEffects` 库。
 
-### 1. 替换照片
+## 🚀 快速开始
 
-所有照片都使用了 picsum.photos 占位图片服务，你可以替换为自己的照片：
+### 本地运行
 
-**当前使用的照片**：
+由于使用了 ES Modules 和一些现代浏览器特性，建议通过本地服务器运行以获得最佳体验（直接打开 html 文件可能会受到浏览器安全策略限制）。
 
-- `index.html`: 日历热力图和在一起时间展示
-- `story.html`: 6个章节共约75张照片（读书、美食、旅行、日常、扶持、未来）
-- `secret.html`: 秘密花园页面
+1. **克隆项目**
 
-**替换步骤**：
+   ```bash
+   git clone https://github.com/your-username/prettysun-us.git
+   ```
 
-1. 准备你的照片，建议尺寸：400-800px 宽
-2. 将照片命名为 `01.jpg`, `02.jpg` ... 或使用描述性名称
-3. 放入对应文件夹
-4. 修改 HTML 文件中的图片路径
+2. **启动服务**
+   如果你安装了 Node.js / Python / VS Code:
 
-**示例**：
+   - **VS Code**: 安装 "Live Server" 插件 -> 在 `index.html` 上右键 -> "Open with Live Server"。
+   - **Python**:
 
-```html
-<!-- 修改前 -->
-<img src="https://picsum.photos/400/500?random=1" alt="美好瞬间">
+     ```bash
+     python -m http.server 8000
+     ```
 
-<!-- 修改后 -->
-<img src="images/gallery/01.jpg" alt="美好瞬间">
-```
+   - **Node.js (http-server)**:
 
-### 2. 添加背景音乐
+     ```bash
+     npx http-server
+     ```
 
-1. 准备一个音乐文件（MP3 格式）
-2. 重命名为 `song.mp3`
-3. 放到 `music/` 文件夹中
-4. 刷新网站，点击右下角音符图标播放
+3. **访问**: 打开浏览器访问 `http://localhost:8000` (或对应端口)。
 
-详见 [music/README.md](music/README.md)
+## ⚙️ 个性化配置
 
-### 3. 修改文字内容
+所有的关键数据和配置都已提取，您可以轻松修改：
 
-#### 修改打字机文字
+### 修改日期与文案
 
-在 `js/main.js` 中找到 `initTypewriter` 函数：
+- **恋爱起始日**: 搜索 `LOVE_START_DATE` 修改日期。
+- **生日倒计时**: 搜索 `targetDate` 或在 JS 中找到倒计时逻辑进行调整。
+- **日历数据**: 热力图数据目前是模拟生成的，您可以对接真实数据源。
 
-```javascript
-function initTypewriter() {
-    const text = "余生很长，只想和你走";  // 修改这里的文字
-    // ...
-}
-```
+### 修改样式
 
-#### 修改秘密花园情书
+- **主题色**: 打开 `css/modern-enhancements.css`，修改 `:root` 下的 `--primary-gradient` 等变量。
+- **动画速度**: 在 `css/animations.css` 中调整动画机制。
 
-编辑 `secret.html`，找到 `.letter-body` 部分，修改段落内容。
+## 📱 移动端优化
 
-#### 修改在一起的起始日期
-
-在 `js/countdown.js` 中找到起始日期常量：
-
-```javascript
-// 在一起的起始日期：2018年7月1日
-const START_DATE = new Date('2018-07-01T00:00:00');
-```
-
-#### 修改日历热力图起始日期
-
-在 `js/calendar-heatmap.js` 中修改起始日期（如果需要）。
-当前设置：从 2024年10月8日 开始展示。
-
-### 4. 修改密码
-
-默认密码是 `sun3469220`，如需修改：
-
-在 `js/easter-eggs.js` 中找到：
-
-```javascript
-const SECRET_PASSWORD = 'sun3469220'; // 修改为你的密码
-```
-
-### 5. 修改生日日期
-
-在 `js/countdown.js` 中找到：
-
-```javascript
-// 目标日期：2026年1月12日
-const TARGET_DATE = new Date('2026-01-12T00:00:00'); // 修改日期
-```
-
-同时在 `js/easter-eggs.js` 中也需要修改生日检测：
-
-```javascript
-// 检查是否是生日
-const now = new Date();
-if (now.getMonth() === 0 && now.getDate() === 12) { // 1月12日
-    setTimeout(triggerBirthdayEffect, 1000);
-}
-```
-
-## 🚀 部署指南
-
-### 部署到 GitHub Pages
-
-1. **Fork 或克隆此仓库**
-2. **启用 GitHub Pages**：
-   - 进入仓库 Settings > Pages
-   - Source 选择 "GitHub Actions"
-3. **自动部署**：
-   - 每次推送到 `main` 分支会自动部署
-   - 访问 `https://你的用户名.github.io/prettysun-us/`
-
-### 部署到其他平台
-
-#### Vercel
-
-1. 导入 GitHub 仓库
-2. 无需配置，直接部署
-3. 自动生成域名
-
-#### Netlify
-
-1. 拖拽整个文件夹到 Netlify
-2. 或连接 GitHub 仓库自动部署
-
-#### 本地预览
-
-```bash
-# 使用 Python
-python -m http.server 8000
-
-# 使用 Node.js
-npx http-server
-
-# 访问 http://localhost:8000
-```
-
-## 🎁 彩蛋提示
-
-有些彩蛋需要一点点发现的乐趣，这里给一些小提示（不完全剧透）：
-
-1. ✅ 右下角有个小东西可以点击
-2. ✅ 页脚有个小点点，多点几次试试
-3. ✅ 在生日当天访问会有惊喜
-4. ❓ 如果你玩过经典游戏，可能知道一个特殊的键盘操作序列...
-5. ✅ 每次刷新页面都会看到不同的话
-
-## 📱 PWA 功能
-
-本网站支持 PWA，可以：
-
-- 📲 添加到手机主屏幕（像 App 一样）
-- 🔌 离线访问（访问过一次后）
-- 🚀 快速加载
-- 📱 全屏体验
-
-**如何添加到主屏幕**：
-
-- **iOS**: Safari 浏览器 > 分享 > 添加到主屏幕
-- **Android**: Chrome 浏览器 > 菜单 > 添加到主屏幕
-
-## 📂 项目结构
-
-```text
-prettysun-us/
-├── index.html              # 主页（倒计时、在一起时间、日历热力图）
-├── story.html              # 故事相册（6个章节）
-├── secret.html             # 秘密花园（需要密码）
-├── detail.html             # 详情页（如果存在）
-├── manifest.json           # PWA 配置
-├── service-worker.js       # Service Worker 离线缓存
-├── css/
-│   ├── style.css          # 主样式文件
-│   └── story.css          # 故事页面样式
-├── js/
-│   ├── main.js            # 主逻辑（粒子动画、打字机效果）
-│   ├── countdown.js       # 倒计时和在一起时间计算
-│   ├── calendar-heatmap.js # 日历热力图
-│   ├── story.js           # 故事页面交互
-│   └── easter-eggs.js     # 5个彩蛋功能
-├── music/                 # 音乐文件夹
-│   ├── song.mp3           # 背景音乐（需自行添加）
-│   └── README.md          # 音乐添加说明
-└── .github/
-    └── workflows/
-        └── pages.yml      # GitHub Pages 自动部署配置
-```
-
-## 🎯 代码说明
-
-### 主要文件说明
-
-- **index.html**: 首页，包含生日倒计时、在一起时间实时显示、日历热力图、打字机效果
-- **story.html**: 故事相册页面，6个章节展示不同主题的照片和回忆
-- **secret.html**: 秘密花园页面，需要输入密码 `sun3469220` 访问，包含情书内容
-- **style.css**: 主样式文件，包含响应式设计、玻璃态效果、动画效果
-- **story.css**: 故事页面专用样式
-- **countdown.js**: 生日倒计时（到2026年1月12日）和在一起时间计算（从2018年7月1日）
-- **calendar-heatmap.js**: 日历热力图生成（从2024年10月8日开始）
-- **main.js**: 粒子动画（星星、萤火虫、爱心）、打字机效果
-- **story.js**: 故事页面的章节导航和滚动交互
-- **easter-eggs.js**: 5个彩蛋的完整实现（音乐播放器、秘密入口、生日特效、Konami密码、打字机）
-
-### 关键技术点
-
-- **粒子动画系统**: 使用 CSS 动画和 JavaScript 动态创建星星、萤火虫和稀有爱心粒子
-- **打字机效果**: 纯 JavaScript 实现的逐字打字动画
-- **日历热力图**: 自定义实现的 GitHub 风格日历可视化
-- **实时时间计算**: 使用 `setInterval` 每秒更新在一起的时间（天、时、分、秒）
-- **生日检测**: 自动检测当前日期，在生日当天触发烟花和气球特效
-- **Konami 密码**: 键盘事件监听实现经典游戏彩蛋，支持移动端触摸手势
-- **Service Worker**: 实现 PWA 离线缓存功能
-- **玻璃态效果**: 使用 `backdrop-filter` 实现现代化的毛玻璃卡片效果
-- **响应式设计**: 完美适配手机、平板和桌面设备
-
-## 🔧 常见问题
-
-### Q: 图片不显示？
-
-A: 默认使用了 picsum.photos 占位图服务，需要网络连接。建议替换为本地图片或自己的图床。
-
-### Q: 音乐无法播放？
-
-A: 浏览器通常要求用户交互后才能播放音乐。确保：
-
-1. 点击了右下角的音符图标
-2. 已将音乐文件命名为 `song.mp3` 并放在 `music/` 文件夹中
-3. 音乐文件路径正确
-
-### Q: PWA 无法添加到主屏幕？
-
-A: 确保使用 HTTPS 访问（GitHub Pages 自动 HTTPS），且 manifest.json 和 service-worker.js 路径正确。
-
-### Q: 生日特效不触发？
-
-A: 需要在 **2026年1月12日** 当天访问才会自动触发烟花和气球特效。可以临时修改系统日期测试，或在代码中修改日期。
-
-### Q: 如何修改配色？
-
-A: 在 `css/style.css` 开头的 `:root` 中修改 CSS 变量值。当前使用暖色系配色（粉色 #E8B4B8 为主色调）。
-
-### Q: 秘密花园密码忘了？
-
-A: 默认密码是 `sun3469220`，可以在 `js/easter-eggs.js` 中的 `SECRET_PASSWORD` 常量修改。
-
-### Q: 日历热力图显示不正确？
-
-A: 日历热力图从 2024年10月8日 开始展示。如需修改起始日期，请编辑 `js/calendar-heatmap.js` 文件。
-
-## 💝 使用建议
-
-1. **尽早准备照片**: 故事相册有6个章节共约75张照片位置，选择有纪念意义的照片替换占位图
-2. **个性化文字**: 修改秘密花园的情书内容和首页打字机文字，表达你自己的心意
-3. **测试所有彩蛋**: 确保5个彩蛋都能正常触发（音乐播放器、秘密入口、生日特效、Konami密码、打字机）
-4. **调整关键日期**: 根据实际情况修改生日日期、在一起起始日期、日历热力图起始日期
-5. **提前部署**: 在生日前几天部署好，避免临时出问题
-6. **添加背景音乐**: 准备一首有意义的歌曲作为背景音乐
-
-## 📄 许可证
-
-MIT License - 可以自由使用、修改和分享
-
-## 💌 最后的话
-
-这个项目是用爱制作的礼物模板，希望它能帮助你为心爱的人创造一个特别的惊喜。
-
-记住，最重要的不是技术有多炫酷，而是你的心意。真诚的情感和用心的准备才是最好的礼物。
-
-祝你们幸福快乐！💕
+- 支持 PWA (做好 meta 标签适配)。
+- 针对 iOS Safari 做了安全区域 (`safe-area-inset`) 适配。
+- 触摸反馈 (`touch-action`, 振动 API) 已启用。
 
 ---
 
-**如果觉得这个项目有帮助，欢迎 Star ⭐**
-
-有问题或建议？欢迎提 Issue 或 Pull Request！
+> "爱是漫长的旅程，每一天都值得被记录。"
+> Made with ❤️ for You.

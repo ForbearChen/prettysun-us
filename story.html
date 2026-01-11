@@ -1,434 +1,560 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="我们的故事 - 记录每一个美好瞬间">
     <meta name="theme-color" content="#E8B4B8">
     <title>我们的故事 💕</title>
-    
-    <!-- PWA Manifest -->
+
     <link rel="manifest" href="manifest.json">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/story.css">
+    <link rel="stylesheet" href="css/story-modern.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="story-nav" id="storyNav">
-        <button class="nav-home" onclick="window.location.href='index.html'">← 首页</button>
-        <div class="nav-chapter-name" id="navChapterName">我们的故事</div>
+        <div class="nav-left">
+            <button class="nav-home" onclick="window.location.href='index.html'">← 首页</button>
+            <div class="nav-chapter-name" id="navChapterName">我们的故事</div>
+        </div>
         <div class="nav-menu-toggle" id="navMenuToggle">☰</div>
     </nav>
-    
+
     <!-- 章节导航菜单 -->
     <div class="chapter-menu" id="chapterMenu">
-        <a href="#chapter1" class="chapter-menu-item" onclick="closeMenu()">📚 一起读书的日子</a>
-        <a href="#chapter2" class="chapter-menu-item" onclick="closeMenu()">🍜 吃过的美食</a>
-        <a href="#chapter3" class="chapter-menu-item" onclick="closeMenu()">✈️ 走过的地方</a>
-        <a href="#chapter4" class="chapter-menu-item" onclick="closeMenu()">🏠 日常点滴</a>
-        <a href="#chapter5" class="chapter-menu-item" onclick="closeMenu()">💪 互相扶持</a>
-        <a href="#chapter6" class="chapter-menu-item" onclick="closeMenu()">🌟 未来可期</a>
+        <a href="#chapter1" class="chapter-menu-item">📚 赌书泼茶</a>
+        <a href="#chapter2" class="chapter-menu-item">🍜 人间有味</a>
+        <a href="#chapter3" class="chapter-menu-item">✈️ 游目骋怀</a>
+        <a href="#chapter4" class="chapter-menu-item">🏠 只道寻常</a>
+        <a href="#chapter5" class="chapter-menu-item">💪 休戚与共</a>
+        <a href="#chapter6" class="chapter-menu-item">🌟 未来可期</a>
     </div>
 
-    <!-- 第一章：一起读书的日子 -->
-    <section class="chapter" id="chapter1" data-chapter="第一章：一起读书的日子">
+    <!-- Hero Section -->
+    <header class="story-hero">
+        <h1 class="fade-in-up">Our Journey</h1>
+        <p class="fade-in-up" style="animation-delay: 0.2s;">从相遇到相守，每一个瞬间都值得铭记</p>
+    </header>
+
+    <!-- 第一章：赌书消得泼茶香 -->
+    <section class="chapter" id="chapter1" data-chapter="第一章：赌书泼茶">
         <div class="chapter-content">
-            <h2 class="chapter-title">📚 第一章</h2>
-            <p class="chapter-quote">"你在看文献，我在看你"</p>
-            
-            <div class="photo-grid bookmark-style">
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=1" alt="图书馆的下午">
-                    <span class="photo-caption">图书馆的下午</span>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">01</span>
+                <h2 class="chapter-title">赌书泼茶</h2>
+                <p class="chapter-quote">"你在看文献，我在看你"</p>
+                <div class="chapter-desc">
+                    研究生的日子一不小心就会过分简单，<br>
+                    起床，早餐，读书，午餐，读书，晚餐，洗澡，读书...<br>
+                    写论文，焦虑，睡觉，焦虑。<br>
+                    间或穿插体育馆，超市，咖啡店。<br>
+                    除了上课之外，一个研究生完全不需要开口说话。<br>
+                    没有课的时候，没有事就没有话。<br>
+                    日子简单得像一条倾斜的线，往内心软弱的方向滑去。<br>
+                    而你我，让这些沉默的时刻有了回声。<br>
+                    <br>
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=2" alt="论文修改到深夜">
-                    <span class="photo-caption">论文修改到深夜</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=3" alt="你专注的样子真好看">
-                    <span class="photo-caption">你专注的样子真好看</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=4" alt="一起听的讲座">
-                    <span class="photo-caption">一起听的讲座</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=5" alt="咖啡续命的日子">
-                    <span class="photo-caption">咖啡续命的日子</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=6" alt="被导师批评后的安慰">
-                    <span class="photo-caption">被导师批评后的安慰</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=7" alt="答辩前的紧张">
-                    <span class="photo-caption">答辩前的紧张</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=8" alt="改论文改到崩溃">
-                    <span class="photo-caption">改论文改到崩溃</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=9" alt="你给我讲的那个模型">
-                    <span class="photo-caption">你给我讲的那个模型</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=10" alt="一起写的那篇paper">
-                    <span class="photo-caption">一起写的那篇paper</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=11" alt="开学第一天">
-                    <span class="photo-caption">开学第一天</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=12" alt="期末复习周">
-                    <span class="photo-caption">期末复习周</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=13" alt="你帮我借的那本书">
-                    <span class="photo-caption">你帮我借的那本书</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=14" alt="自习室的老位置">
-                    <span class="photo-caption">自习室的老位置</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=15" alt="毕业论文的草稿">
-                    <span class="photo-caption">毕业论文的草稿</span>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>📚 查看更多学习时光</span>
+                    </button>
                 </div>
             </div>
-            
-            <p class="chapter-ending">这是我最喜欢的自习位置，因为能偷偷看到你</p>
+            <div class="gallery-block photo-stack fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card">
+                    <img src="images/study/cover/2019_04_05_pad_01.jpg" alt="学习时光">
+                </div>
+                <div class="photo-card">
+                    <img src="images/study/cover/2020_10_15_ppt_02.jpg" alt="学术报告">
+                </div>
+                <div class="photo-card">
+                    <img src="images/study/cover/2022_01_14_ppt_02.jpg" alt="学习笔记">
+                </div>
+
+                <!-- 隐藏的Live Photo (点击"查看更多"时显示) - 共28张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/study/2018_11_07_teacherhuang_01.jpg" alt="黄老师指导">
+                    <img data-src="images/study/2018_11_28_teacherhuang_01.jpg" alt="黄老师论文指导">
+                    <img data-src="images/study/2019_01_04_teacherhuang_01.jpg" alt="学术讨论">
+                    <img data-src="images/study/2019_03_06_teacherhuang_01.jpeg" alt="学习讨论">
+                    <img data-src="images/study/2019_04_05_pad_01.jpg" alt="平板学习">
+                    <img data-src="images/study/2019_06_05_eng_01.PNG" alt="英语学习">
+                    <img data-src="images/study/2019_09_20_party_01.jpg" alt="学习聚会">
+                    <img data-src="images/study/2019_09_25_stucard_01.mp4" alt="学生证视频">
+                    <img data-src="images/study/2019_09_27_stucard_01.jpg" alt="学生证">
+                    <img data-src="images/study/2019_09_28_ppt_01.jpg" alt="PPT制作">
+                    <img data-src="images/study/2020_01_11_reject_01.PNG" alt="学术交流">
+                    <img data-src="images/study/2020_09_02_ppt_01.jpg" alt="演示文稿">
+                    <img data-src="images/study/2020_09_02_ppt_02.jpg" alt="学习资料">
+                    <img data-src="images/study/2020_09_24_ppt_02.jpg" alt="学术研究">
+                    <img data-src="images/study/2020_10_15_ppt_02.jpg" alt="学习笔记">
+                    <img data-src="images/study/2020_11_08_ppt_02.jpg" alt="知识分享">
+                    <img data-src="images/study/2020_11_15_ppt_02.jpg" alt="学术探讨">
+                    <img data-src="images/study/2021_01_14_ppt_02.jpg" alt="学习心得">
+                    <img data-src="images/study/2021_03_05_ppt_02.jpg" alt="研究成果">
+                    <img data-src="images/study/2021_09_10_ppt_02.jpg" alt="学术会议">
+                    <img data-src="images/study/2021_09_12_ppt_02.jpg" alt="学习交流">
+                    <img data-src="images/study/2021_10_29_ppt_02.jpg" alt="学习交流">
+                    <img data-src="images/study/2021_11_19_ppt_02.jpg" alt="知识探索">
+                    <img data-src="images/study/2022_01_09_reject_01.PNG" alt="学术讨论">
+                    <img data-src="images/study/2022_01_14_ppt_02.jpg" alt="学习分享">
+                    <img data-src="images/study/2022_02_11_ppt_02.jpg" alt="研究笔记">
+                    <img data-src="images/study/2022_12_09_reject_01.PNG" alt="学术交流">
+                    <img data-src="images/study/2024_06_04_ppt_02.jpg" alt="最新研究">
+                    <img data-src="images/study/2024_11_08_ppt_02.jpg" alt="学术成果">
+                    <img data-src="images/study/2025_07_12_ppt_02.jpg" alt="学习总结">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 第二章：吃过的美食 -->
-    <section class="chapter" id="chapter2" data-chapter="第二章：吃过的美食">
+    <!-- 第二章：人间有味是清欢 -->
+    <section class="chapter" id="chapter2" data-chapter="第二章：人间有味">
         <div class="chapter-content">
-            <h2 class="chapter-title">🍜 第二章</h2>
-            <p class="chapter-quote">"胃和心，你都填满了"</p>
-            
-            <div class="photo-grid plate-style">
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=16" alt="第一次说好吃的店">
-                    <span class="photo-caption">第一次说好吃的店</span>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">02</span>
+                <h2 class="chapter-title">人间有味</h2>
+                <p class="chapter-quote">"人间有味是清欢，食之有味是因为你"</p>
+                <div class="chapter-desc">
+                    我们一起吃了多少次饭已经数不清了。<br>
+                    我们总说要减肥，要忌口，<br>
+                    菜一上桌，筷子却比谁都诚实。<br>
+                    不过重要的不是吃什么，<br>
+                    不管是食堂还是餐厅，<br>
+                    只要共坐的人是你。<br>
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=17" alt="吵架后的和好饭">
-                    <span class="photo-caption">吵架后的和好饭</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=18" alt="你做的第一顿饭">
-                    <span class="photo-caption">你做的第一顿饭</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=19" alt="深夜的外卖">
-                    <span class="photo-caption">深夜的外卖</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=20" alt="生日蛋糕">
-                    <span class="photo-caption">生日蛋糕</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=21" alt="火锅！又是火锅！">
-                    <span class="photo-caption">火锅！又是火锅！</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=22" alt="尝试新餐厅">
-                    <span class="photo-caption">尝试新餐厅</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=23" alt="失败的料理实验">
-                    <span class="photo-caption">失败的料理实验</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=24" alt="早起做的早餐">
-                    <span class="photo-caption">早起做的早餐</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=25" alt="奶茶日常">
-                    <span class="photo-caption">奶茶日常</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=26" alt="街边的小吃">
-                    <span class="photo-caption">街边的小吃</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=27" alt="过年的团圆饭">
-                    <span class="photo-caption">过年的团圆饭</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=28" alt="野餐的三明治">
-                    <span class="photo-caption">野餐的三明治</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=29" alt="你夹给我的菜">
-                    <span class="photo-caption">你夹给我的菜</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=30" alt="吃撑后的散步">
-                    <span class="photo-caption">吃撑后的散步</span>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>✨ 查看更多美食</span>
+                    </button>
                 </div>
             </div>
-            
-            <p class="chapter-ending">
-                <span class="empty-plate">🍽️</span>
-                <br>不管吃什么，和你吃就是最好吃的
-            </p>
+
+            <div class="gallery-block photo-collage fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card">
+                    <img src="images/food/cover/2019_05_15_fafa_01.jpg" alt="美食时光">
+                </div>
+                <div class="photo-card">
+                    <img src="images/food/cover/2019_08_22_tea_01.jpg" alt="下午茶">
+                </div>
+                <div class="photo-card">
+                    <img src="images/food/cover/2023_12_03_nuts_01.jpg" alt="坚果美食">
+                </div>
+                <div class="photo-card">
+                    <img src="images/food/cover/2024_04_17_nuts_01.jpg" alt="健康美食">
+                </div>
+
+                <!-- 隐藏的照片 (点击"查看更多"时显示) - 共15张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/food/2019_03_01_food_01.gif" alt="美食动画">
+                    <img data-src="images/food/2019_03_09_food_01.jpg" alt="美味佳肴">
+                    <img data-src="images/food/2019_04_19_food_01.jpg" alt="特色美食">
+                    <img data-src="images/food/2019_05_15_fafa_01.jpg" alt="家人美食">
+                    <img data-src="images/food/2019_08_22_tea_01.jpg" alt="精美茶点">
+                    <img data-src="images/food/2019_11_30_nuts_01.jpg" alt="坚果美食">
+                    <img data-src="images/food/2020_04_10_nuts_01.jpg" alt="健康零食">
+                    <img data-src="images/food/2022_01_11_nuts_01.jpg" alt="美味坚果">
+                    <img data-src="images/food/2023_12_03_nuts_01.jpg" alt="节日美食">
+                    <img data-src="images/food/2024_04_17_nuts_01.jpg" alt="营养美食">
+                    <img data-src="images/food/2024_08_04_nuts_01.jpg" alt="美食分享">
+                    <img data-src="images/food/2024_08_05_nuts_01.jpg" alt="夏日美食">
+                    <img data-src="images/food/2024_08_05_nuts_03.jpg" alt="美食时刻">
+                    <img data-src="images/food/2024_08_08_nuts_03.jpg" alt="健康饮食">
+                    <img data-src="images/food/2025_10_17_nuts_03.jpg" alt="秋季美食">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 第三章：走过的地方 -->
-    <section class="chapter" id="chapter3" data-chapter="第三章：走过的地方">
+    <!-- 第三章：游目骋怀 -->
+    <section class="chapter" id="chapter3" data-chapter="第三章：游目骋怀">
         <div class="chapter-content">
-            <h2 class="chapter-title">✈️ 第三章</h2>
-            <p class="chapter-quote">"世界那么大，只想和你看"</p>
-            
-            <div class="photo-grid postcard-style">
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=31" alt="第一次旅行">
-                    <span class="photo-caption">第一次旅行</span>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">03</span>
+                <h2 class="chapter-title">游目骋怀</h2>
+                <p class="chapter-quote">"且将新火试新茶，诗酒趁年华"</p>
+                <div class="chapter-desc">
+                    史料里的世界是灰色的、不真实的，<br>
+                    但和你走过的世界是鲜活的、真实的。<br>
+                    我们没有看过沙漠下暴雨，也没有看过大海亲吻鲨鱼，<br>
+                    但我们从熟悉的校园，到那些陌生的异乡街头。<br>
+                    从安静的宿舍，到热烈的演唱会，<br>
+                    岁月的江水奔流不息，<br>
+                    我们永远无法在江边找回遗落的那把剑。<br>
+                    但白驹过隙的日子里，<br>
+                    我们共同体会这些具体的、微小的瞬间。<br>
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=32" alt="日出">
-                    <span class="photo-caption">日出</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=33" alt="海边的风">
-                    <span class="photo-caption">海边的风</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=34" alt="山顶的合影">
-                    <span class="photo-caption">山顶的合影</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=35" alt="迷路的小巷">
-                    <span class="photo-caption">迷路的小巷</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=36" alt="民宿的窗外">
-                    <span class="photo-caption">民宿的窗外</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=37" alt="火车上的风景">
-                    <span class="photo-caption">火车上的风景</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=38" alt="当地的小吃">
-                    <span class="photo-caption">当地的小吃</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=39" alt="博物馆里">
-                    <span class="photo-caption">博物馆里</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=40" alt="街头的艺人">
-                    <span class="photo-caption">街头的艺人</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=41" alt="雨中的奔跑">
-                    <span class="photo-caption">雨中的奔跑</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=42" alt="日落时分">
-                    <span class="photo-caption">日落时分</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=43" alt="夜市的人潮">
-                    <span class="photo-caption">夜市的人潮</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=44" alt="离开前的不舍">
-                    <span class="photo-caption">离开前的不舍</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=45" alt="下一站，在哪里？">
-                    <span class="photo-caption">下一站，在哪里？</span>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>✈️ 查看更多旅行回忆</span>
+                    </button>
                 </div>
             </div>
-            
-            <p class="chapter-ending">还有好多地方，等着我们一起去</p>
+            <div class="gallery-block photo-stack fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card">
+                    <img src="images/travel/cover/2024_08_05_xian_02.jpg" alt="旅行记忆">
+                </div>
+                <div class="photo-card">
+                    <img src="images/travel/cover/2025_04_16_xian_01.jpg" alt="风景如画">
+                </div>
+                <div class="photo-card">
+                    <img src="images/travel/cover/1768121808188_d.jpg" alt="精彩瞬间">
+                </div>
+
+                <!-- 隐藏的Live Photo (点击"查看更多"时显示) - 共29张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/travel/2018_09_30_jaychou_01.jpg" alt="周杰伦演唱会">
+                    <img data-src="images/travel/2018_09_30_jaychou_02.jpg" alt="演唱会现场">
+                    <img data-src="images/travel/2019_04_18_cq_01.jpg" alt="重庆之旅">
+                    <img data-src="images/travel/2019_04_19_cq_01.jpg" alt="重庆风景">
+                    <img data-src="images/travel/2019_04_19_cq_02.jpg" alt="城市风光">
+                    <img data-src="images/travel/2019_04_19_cq_03.jpg" alt="旅行记忆">
+                    <img data-src="images/travel/2019_08_22_xian_01.jpg" alt="西安古都">
+                    <img data-src="images/travel/2019_08_22_xian_02.mov" alt="西安Live Photo">
+                    <img data-src="images/travel/2019_08_23_xian_01.jpg" alt="西安之旅">
+                    <img data-src="images/travel/2019_08_25_xian_01.jpg" alt="古都风情">
+                    <img data-src="images/travel/2022_01_29_xian_01.jpg" alt="历史印记">
+                    <img data-src="images/travel/2022_08_13_xian_01.jpg" alt="文化遗产">
+                    <img data-src="images/travel/2022_08_13_xian_02.jpg" alt="古都记忆">
+                    <img data-src="images/travel/2022_08_16_xian_01.jpg" alt="时光之旅">
+                    <img data-src="images/travel/2023_05_14_xian_01.jpg" alt="精彩瞬间">
+                    <img data-src="images/travel/2023_08_02_xian_01.jpg" alt="旅行故事">
+                    <img data-src="images/travel/2023_08_02_xian_02.jpg" alt="夏日旅行">
+                    <img data-src="images/travel/2024_08_05_xian_01.jpg" alt="西安古都">
+                    <img data-src="images/travel/2024_08_05_xian_02.jpg" alt="历史遗迹">
+                    <img data-src="images/travel/2024_08_05_xian_03.jpg" alt="文化传承">
+                    <img data-src="images/travel/2024_08_07_xian_03.jpg" alt="古都风貌">
+                    <img data-src="images/travel/2024_11_24_xian_01.jpg" alt="冬季旅行">
+                    <img data-src="images/travel/2024_11_24_xian_03.jpg" alt="节日氛围">
+                    <img data-src="images/travel/2025_04_16_xian_01.jpg" alt="春日古都">
+                    <img data-src="images/travel/2025_04_16_xian_02.jpg" alt="历史印记">
+                    <img data-src="images/travel/2025_04_16_xian_03.jpg" alt="文化遗产">
+                    <img data-src="images/travel/2025_04_17_xian_03.jpg" alt="古都记忆">
+                    <img data-src="images/travel/2025_04_20_weixin_01.PNG" alt="旅行分享">
+                    <img data-src="images/travel/2025_08_27_xian_03.jpg" alt="夏日古都">
+                    <img data-src="images/travel/2025_08_28_xian_01.jpg" alt="历史遗迹">
+                    <img data-src="images/travel/2025_08_28_xian_03.jpg" alt="文化传承">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 第四章：日常点滴 -->
-    <section class="chapter" id="chapter4" data-chapter="第四章：日常点滴">
+    <section class="chapter" id="chapter4" data-chapter="第四章：只道寻常">
         <div class="chapter-content">
-            <h2 class="chapter-title">🏠 第四章</h2>
-            <p class="chapter-quote">"最普通的日子，因为有你，都在发光"</p>
-            
-            <div class="photo-grid album-style">
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=46" alt="周末的懒觉">
-                    <span class="photo-caption">周末的懒觉</span>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">04</span>
+                <h2 class="chapter-title">只道寻常</h2>
+                <p class="chapter-quote">"最普通的日子，因为有你，都在发光"</p>
+                <div class="chapter-desc">
+                    大多数时候，我们的生活并没有背景音乐。<br>
+                    我在看文献，你在调代码，<br>
+                    畅连中只剩下键盘敲击的声音。<br>
+                    如果未来的历史学家要研究我们，<br>
+                    大概会觉得枯燥至极。<br>
+                    我们的历史，<br>
+                    写在成千上万张的聊天截图中，<br>
+                    写在那些随手拍下的数以G计的视频里。<br>
+                    比起轰轰烈烈，我更喜欢我们日复一日的小日子。<br>
+                    这些日常，是我一直的向往。<br>
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=47" alt="一起看的电影">
-                    <span class="photo-caption">一起看的电影</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=48" alt="阳台的植物">
-                    <span class="photo-caption">阳台的植物</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=49" alt="超市采购">
-                    <span class="photo-caption">超市采购</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=50" alt="你做家务的样子">
-                    <span class="photo-caption">你做家务的样子</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=51" alt="躺着刷手机">
-                    <span class="photo-caption">躺着刷手机</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=52" alt="一起打游戏">
-                    <span class="photo-caption">一起打游戏</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=53" alt="视频通话的夜晚">
-                    <span class="photo-caption">视频通话的夜晚</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=54" alt="送你的小礼物">
-                    <span class="photo-caption">送你的小礼物</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=55" alt="你偷拍的我">
-                    <span class="photo-caption">你偷拍的我</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=56" alt="我偷拍的你">
-                    <span class="photo-caption">我偷拍的你</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=57" alt="下班后的拥抱">
-                    <span class="photo-caption">下班后的拥抱</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=58" alt="一起运动">
-                    <span class="photo-caption">一起运动</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=59" alt="煮的泡面也香">
-                    <span class="photo-caption">煮的泡面也香</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=60" alt="晚安的那条消息">
-                    <span class="photo-caption">晚安的那条消息</span>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>📸 查看生活相册</span>
+                    </button>
                 </div>
             </div>
-            
-            <p class="chapter-ending">每天醒来看到你，就是最好的日常</p>
+            <div class="gallery-block photo-collage fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card">
+                    <img src="images/daily/2018_07_16_nocomment_01.jpg" alt="日常生活">
+                </div>
+                <div class="photo-card">
+                    <img src="images/daily/2018_10_22_mirror_01.jpg" alt="镜子前的合影">
+                </div>
+                <div class="photo-card">
+                    <img src="images/daily/2019_01_06_ktv_01.jpg" alt="KTV时光">
+                </div>
+                <div class="photo-card">
+                    <img src="images/daily/2019_01_08_weixin_01.PNG" alt="微信聊天记录">
+                </div>
+
+                <!-- 隐藏照片 - 共81张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/daily/2018_07_16_nocomment_01.jpg" alt="日常生活">
+                    <img data-src="images/daily/2018_10_22_mirror_01.jpg" alt="镜子前的合影">
+                    <img data-src="images/daily/2019_01_06_ktv_01.jpg" alt="KTV时光">
+                    <img data-src="images/daily/2019_01_08_weixin_01.PNG" alt="微信聊天记录">
+                    <img data-src="images/daily/2019_02_05_weixin_01.PNG" alt="微信记录">
+                    <img data-src="images/daily/2019_03_28_hnu_01.jpg" alt="校园生活">
+                    <img data-src="images/daily/2019_04_05_jio_01.jpg" alt="快乐时光">
+                    <img data-src="images/daily/2019_04_19_nav_01.jpg" alt="导航趣事">
+                    <img data-src="images/daily/2019_04_19_nav_02.mov" alt="导航Live Photo">
+                    <img data-src="images/daily/2019_04_25_ball_01.jpg" alt="运动时刻">
+                    <img data-src="images/daily/2019_04_25_ball_02.jpg" alt="球类活动">
+                    <img data-src="images/daily/2019_07_16_shangqiu_02.jpg" alt="商丘之旅">
+                    <img data-src="images/daily/2019_08_04_haircut_02.jpg" alt="理发趣事">
+                    <img data-src="images/daily/2019_09_26_haircut_02.jpg" alt="造型改变">
+                    <img data-src="images/daily/2019_10_09_weixin_01.PNG" alt="聊天记录">
+                    <img data-src="images/daily/2020_01_20_heatmap_01.jpg" alt="数据可视化">
+                    <img data-src="images/daily/2020_02_05_weixin_01.PNG" alt="日常对话">
+                    <img data-src="images/daily/2020_04_04_weixin_01.PNG" alt="温馨交流">
+                    <img data-src="images/daily/2020_04_04_weixin_02.PNG" alt="甜蜜对话">
+                    <img data-src="images/daily/2020_04_12_weixin_01.PNG" alt="温馨问候">
+                    <img data-src="images/daily/2020_06_13_heatmap_01.jpg" alt="成长轨迹">
+                    <img data-src="images/daily/2020_06_15_heatmap_01.jpg" alt="数据故事">
+                    <img data-src="images/daily/2020_07_03_weixin_01.PNG" alt="夏日问候">
+                    <img data-src="images/daily/2020_08_11_weixin_01.PNG" alt="节日祝福">
+                    <img data-src="images/daily/2020_08_16_weixin_01.PNG" alt="温馨时光">
+                    <img data-src="images/daily/2020_08_28_heatmap_01.jpg" alt="时光印记">
+                    <img data-src="images/daily/2020_09_02_weixin_01.jpg" alt="生活点滴">
+                    <img data-src="images/daily/2020_09_05_weixin_01.PNG" alt="日常交流">
+                    <img data-src="images/daily/2020_09_24_weixin_01.jpg" alt="温馨时刻">
+                    <img data-src="images/daily/2020_10_01_weixin_01.jpg" alt="节日祝福">
+                    <img data-src="images/daily/2020_10_02_weixin_01.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2020_11_27_weixin_01.PNG" alt="感恩节">
+                    <img data-src="images/daily/2020_12_03_weixin_01.jpg" alt="节日庆祝">
+                    <img data-src="images/daily/2021_01_21_weixin_01.jpg" alt="新年祝福">
+                    <img data-src="images/daily/2021_03_05_weixin_01.jpg" alt="春天来信">
+                    <img data-src="images/daily/2021_03_07_weixin_01.jpg" alt="暖心问候">
+                    <img data-src="images/daily/2021_04_11_weixin_01.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2021_04_11_weixin_02.jpg" alt="甜蜜祝福">
+                    <img data-src="images/daily/2021_04_13_weixin_01.jpg" alt="温馨对话">
+                    <img data-src="images/daily/2021_04_13_weixin_02.jpg" alt="美好祝福">
+                    <img data-src="images/daily/2022_01_20_weixin_02.jpg" alt="新春祝福">
+                    <img data-src="images/daily/2022_02_02_weixin_02.jpg" alt="元宵节">
+                    <img data-src="images/daily/2022_04_07_weixin_01.PNG" alt="温馨问候">
+                    <img data-src="images/daily/2022_05_31_weixin_01.PNG" alt="节日祝福">
+                    <img data-src="images/daily/2022_07_05_weixin_02.jpg" alt="夏日时光">
+                    <img data-src="images/daily/2022_07_18_weixin_01.jpg" alt="夏日问候">
+                    <img data-src="images/daily/2022_07_18_weixin_02.jpg" alt="温馨时光">
+                    <img data-src="images/daily/2022_08_05_weixin_02.jpg" alt="七夕快乐">
+                    <img data-src="images/daily/2022_08_26_weixin_02.jpg" alt="中秋祝福">
+                    <img data-src="images/daily/2022_10_25_weixin_01.PNG" alt="温馨问候">
+                    <img data-src="images/daily/2022_12_02_weixin_01.PNG" alt="节日祝福">
+                    <img data-src="images/daily/2022_12_28_weixin_01.PNG" alt="圣诞祝福">
+                    <img data-src="images/daily/2023_01_01_weixin_02.jpg" alt="新年快乐">
+                    <img data-src="images/daily/2023_01_08_weixin_02.jpg" alt="节日祝福">
+                    <img data-src="images/daily/2023_01_31_weixin_02.jpg" alt="春节快乐">
+                    <img data-src="images/daily/2023_02_10_weixin_02.jpg" alt="元宵节">
+                    <img data-src="images/daily/2023_05_15_weixin_02.jpg" alt="母亲节">
+                    <img data-src="images/daily/2023_06_22_weixin_02.jpg" alt="夏日祝福">
+                    <img data-src="images/daily/2023_07_05_weixin_02.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2023_07_09_weixin_01.PNG" alt="温馨问候">
+                    <img data-src="images/daily/2023_07_27_weixin_01.jpg" alt="夏日祝福">
+                    <img data-src="images/daily/2023_07_27_weixin_02.jpg" alt="温馨问候">
+                    <img data-src="images/daily/2023_07_28_weixin_02.jpg" alt="美好时光">
+                    <img data-src="images/daily/2023_07_29_weixin_02.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2023_07_30_weixin_02.jpg" alt="夏日时光">
+                    <img data-src="images/daily/2023_08_01_weixin_02.jpg" alt="建军节">
+                    <img data-src="images/daily/2023_08_24_weixin_01.PNG" alt="温馨问候">
+                    <img data-src="images/daily/2023_11_16_weixin_01.PNG" alt="感恩节">
+                    <img data-src="images/daily/2023_11_23_weixin_02.jpg" alt="节日祝福">
+                    <img data-src="images/daily/2023_12_01_weixin_01.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2023_12_01_weixin_02.jpg" alt="圣诞祝福">
+                    <img data-src="images/daily/2023_12_16_weixin_02.jpg" alt="冬日祝福">
+                    <img data-src="images/daily/2024_01_25_weixin_02.jpg" alt="春节快乐">
+                    <img data-src="images/daily/2024_01_27_weixin_02.jpg" alt="新春祝福">
+                    <img data-src="images/daily/2024_01_31_weixin_02.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2024_04_01_weixin_02.jpg" alt="愚人节">
+                    <img data-src="images/daily/2024_04_13_weixin_02.jpg" alt="温馨问候">
+                    <img data-src="images/daily/2024_06_04_weixin_01.jpg" alt="节日祝福">
+                    <img data-src="images/daily/2024_06_04_weixin_02.jpg" alt="端午节">
+                    <img data-src="images/daily/2024_07_02_weixin_02.jpg" alt="夏日时光">
+                    <img data-src="images/daily/2024_08_09_weixin_02.jpg" alt="奥运祝福">
+                    <img data-src="images/daily/2024_08_10_weixin_02.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2024_08_12_weixin_02.jpg" alt="夏日祝福">
+                    <img data-src="images/daily/2024_08_26_weixin_02.jpg" alt="七夕节">
+                    <img data-src="images/daily/2024_10_15_weixin_02.jpg" alt="中秋祝福">
+                    <img data-src="images/daily/2024_11_07_weixin_02.jpg" alt="温馨问候">
+                    <img data-src="images/daily/2024_11_21_weixin_02.jpg" alt="感恩节">
+                    <img data-src="images/daily/2024_11_24_weixin_02.jpg" alt="圣诞祝福">
+                    <img data-src="images/daily/2025_01_10_weixin_02.jpg" alt="新年快乐">
+                    <img data-src="images/daily/2025_01_19_weixin_02.jpg" alt="春节祝福">
+                    <img data-src="images/daily/2025_02_09_weixin_02.jpg" alt="元宵节">
+                    <img data-src="images/daily/2025_03_11_weixin_02.jpg" alt="温馨问候">
+                    <img data-src="images/daily/2025_03_14_weixin_02.jpg" alt="美好祝福">
+                    <img data-src="images/daily/2025_03_23_weixin_02.jpg" alt="节日快乐">
+                    <img data-src="images/daily/2025_04_02_weixin_02.jpg" alt="春日祝福">
+                    <img data-src="images/daily/2025_04_15_weixin_02.jpg" alt="清明节">
+                    <img data-src="images/daily/2025_04_28_weixin_02.jpg" alt="劳动节">
+                    <img data-src="images/daily/2025_06_06_weixin_02.jpg" alt="儿童节">
+                    <img data-src="images/daily/2025_08_26_weixin_02.jpg" alt="七夕节">
+                    <img data-src="images/daily/2025_10_20_weixin_02.jpg" alt="国庆节">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 第五章：互相扶持 -->
-    <section class="chapter" id="chapter5" data-chapter="第五章：互相扶持">
+    <section class="chapter" id="chapter5" data-chapter="第五章：休戚与共">
         <div class="chapter-content">
-            <h2 class="chapter-title">💪 第五章</h2>
-            <p class="chapter-quote">"谢谢你，在看到我的缺点时，依然选择我"</p>
-            
-            <div class="emotional-section">
-                <div class="photo-grid support-style">
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/400/300?random=61" alt="你安慰我的那天">
-                        <span class="photo-caption">你安慰我的那天</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/300/400?random=62" alt="一起扛过的难关">
-                        <span class="photo-caption">一起扛过的难关</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/400/300?random=63" alt="你生病时">
-                        <span class="photo-caption">你生病时</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/300/400?random=64" alt="我焦虑时">
-                        <span class="photo-caption">我焦虑时</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/400/300?random=65" alt="深夜的长谈">
-                        <span class="photo-caption">深夜的长谈</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/300/400?random=66" alt="你给我的勇气">
-                        <span class="photo-caption">你给我的勇气</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/400/300?random=67" alt="我们的约定">
-                        <span class="photo-caption">我们的约定</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://picsum.photos/300/400?random=68" alt="风雨后的彩虹">
-                        <span class="photo-caption">风雨后的彩虹</span>
-                    </div>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">05</span>
+                <h2 class="chapter-title">休戚与共</h2>
+                <p class="chapter-quote">"谢谢你，在看到我的缺点时，依然选择我"</p>
+                <div class="chapter-desc">
+                    你可知，我和你一样，<br>
+                    我也每天都在担心，<br>
+                    担心你吃得好不好，睡得香不香，<br>
+                    担心你是否依然自信、开朗，<br>
+                    我怕自己不够努力，<br>
+                    怕想得太多却迎来失望，<br>
+                    但有一点，我们要始终坚信，<br>
+                    你的美梦是关于我，<br>
+                    我的勇气来源于你，<br>
+                    我们苦寻的光亮不过是，<br>
+                    已经拥有的彼此而已。<br>
                 </div>
-                
-                <div class="heartfelt-words">
-                    <p class="heartfelt-quote">"心疼"</p>
-                    <p class="heartfelt-text">在看到我的缺点的时候仍然希望我能健康快乐的活着</p>
-                    <p class="heartfelt-text">不上进偷懒纠正</p>
-                    <p class="heartfelt-quote">"规划里有我"</p>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>💕 查看更多温馨时刻</span>
+                    </button>
                 </div>
             </div>
-            
-            <p class="chapter-ending">你让我相信，我值得被爱</p>
+            <div class="gallery-block photo-stack fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card">
+                    <img src="images/couple/cover/2020_04_20_xian_03.jpg" alt="甜蜜时刻">
+                </div>
+                <div class="photo-card">
+                    <img src="images/couple/cover/2023_08_09_xian_02.jpg" alt="幸福时光">
+                </div>
+
+                <!-- 隐藏的Live Photo (点击"查看更多"时显示) - 共42张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/couple/2018_12_06_couple_01.jpg" alt="情侣合影">
+                    <img data-src="images/couple/2018_12_31_couple_01.jpg" alt="跨年时刻">
+                    <img data-src="images/couple/2019_03_09_run_01.jpg" alt="运动时光">
+                    <img data-src="images/couple/2019_03_31_run_01.jpg" alt="一起奔跑">
+                    <img data-src="images/couple/2019_05_30_run_01.jpeg" alt="户外活动">
+                    <img data-src="images/couple/2019_06_25_zhengzhou_01.jpg" alt="郑州之旅">
+                    <img data-src="images/couple/2019_08_22_xian_01.jpg" alt="西安古都">
+                    <img data-src="images/couple/2019_11_30_xian_01.jpg" alt="古都风情">
+                    <img data-src="images/couple/2020_04_20_xian_01.jpg" alt="历史印记">
+                    <img data-src="images/couple/2020_04_20_xian_02.jpg" alt="文化之旅">
+                    <img data-src="images/couple/2020_04_20_xian_03.jpg" alt="古都记忆">
+                    <img data-src="images/couple/2020_06_22_xian_01.PNG" alt="旅行故事">
+                    <img data-src="images/couple/2020_08_28_xian_02.jpg" alt="精彩瞬间">
+                    <img data-src="images/couple/2020_10_01_xian_02.jpg" alt="美好回忆">
+                    <img data-src="images/couple/2020_12_06_xian_02.jpg" alt="温馨时光">
+                    <img data-src="images/couple/2021_03_06_xian_02.jpg" alt="幸福时刻">
+                    <img data-src="images/couple/2022_01_19_xian_02.jpg" alt="甜蜜记忆">
+                    <img data-src="images/couple/2022_02_11_xian_02.jpg" alt="美好时光">
+                    <img data-src="images/couple/2022_08_11_xian_02.jpg" alt="夏日回忆">
+                    <img data-src="images/couple/2022_08_26_xian_02.jpg" alt="幸福时光">
+                    <img data-src="images/couple/2023_01_14_xian_02.jpg" alt="温馨日常">
+                    <img data-src="images/couple/2023_01_31_xian_01.jpg" alt="甜蜜时刻">
+                    <img data-src="images/couple/2023_01_31_xian_02.jpg" alt="美好回忆">
+                    <img data-src="images/couple/2023_05_12_xian_02.jpg" alt="春日时光">
+                    <img data-src="images/couple/2023_07_25_xian_02.jpg" alt="夏日甜蜜">
+                    <img data-src="images/couple/2023_08_02_xian_02.jpg" alt="幸福回忆">
+                    <img data-src="images/couple/2023_08_06_xian_02.jpg" alt="温馨时光">
+                    <img data-src="images/couple/2023_08_09_xian_02.jpg" alt="美好瞬间">
+                    <img data-src="images/couple/2023_11_29_xian_01.jpg" alt="秋日回忆">
+                    <img data-src="images/couple/2023_11_29_xian_02.jpg" alt="幸福时刻">
+                    <img data-src="images/couple/2023_12_01_xian_02.jpg" alt="节日快乐">
+                    <img data-src="images/couple/2024_04_19_xian_02.jpg" alt="春日时光">
+                    <img data-src="images/couple/2024_06_05_xian_02.jpg" alt="夏日回忆">
+                    <img data-src="images/couple/2024_08_04_xian_02.jpg" alt="美好时光">
+                    <img data-src="images/couple/2024_08_06_xian_02.jpg" alt="幸福瞬间">
+                    <img data-src="images/couple/2024_08_10_xian_02.jpg" alt="甜蜜时刻">
+                    <img data-src="images/couple/2024_11_21_xian_02.jpg" alt="感恩时光">
+                    <img data-src="images/couple/2024_11_22_xian_02.jpg" alt="美好回忆">
+                    <img data-src="images/couple/2025_01_23_xian_02.jpg" alt="新春快乐">
+                    <img data-src="images/couple/2025_02_13_xian_02.jpg" alt="元宵祝福">
+                    <img data-src="images/couple/2025_04_15_xian_02.jpg" alt="春日甜蜜">
+                    <img data-src="images/couple/2025_04_17_xian_02.jpg" alt="美好时光">
+                    <img data-src="images/couple/2025_08_12_xian_02.jpg" alt="夏日回忆">
+                    <img data-src="images/couple/2025_10_18_xian_02.jpg" alt="秋日温馨">
+                    <img data-src="images/couple/2025_10_21_xian_02.jpg" alt="幸福时刻">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 第六章：未来可期 -->
-    <section class="chapter final-chapter" id="chapter6" data-chapter="终章：未来可期">
+    <section class="chapter" id="chapter6" data-chapter="终章：未来可期">
         <div class="chapter-content">
-            <h2 class="chapter-title">🌟 终章</h2>
-            <p class="chapter-quote">"小三千天飞驰而过，接下来是一辈子"</p>
-            
-            <div class="photo-grid future-style">
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=69" alt="我们的合影">
-                    <span class="photo-caption">我们的合影</span>
+            <div class="chapter-text fade-in-up">
+                <span class="chapter-number">?</span>
+                <h2 class="chapter-title">未来可期</h2>
+                <p class="chapter-quote">"小三千天飞驰而过，接下来是一辈子"</p>
+                <div class="chapter-desc">
+                    <strong>2026年，博士毕业。</strong><br>
+                    然后呢？<br>
+                    然后是一屋两人，三餐四季。<br>
+                    是更多的旅行，更多的美食，更多的拥抱。<br>
+                    无论未来怎样，<br>
+                    只要我们在一起，就什么都不怕。
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=70" alt="最近的样子">
-                    <span class="photo-caption">最近的样子</span>
+
+                <!-- 查看更多按钮 -->
+                <div class="view-more-container">
+                    <button class="view-more-btn">
+                        <span>🌟 查看更多美好憧憬</span>
+                    </button>
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=71" alt="你笑起来的样子">
-                    <span class="photo-caption">你笑起来的样子</span>
+
+                <br>
+                <button class="love-letter-button modern-button" onclick="window.location.href='secret.html'">
+                    💌 读一封写给你的信
+                </button>
+            </div>
+            <div class="gallery-block photo-stack fade-in-up" style="animation-delay: 0.3s;">
+                <div class="photo-card" style="transform: rotate(0deg); width: 100%;">
+                    <img src="images/future/cover/2021_03_06_btd_01.jpg" alt="美好憧憬">
                 </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/300/400?random=72" alt="我眼中的你">
-                    <span class="photo-caption">我眼中的你</span>
-                </div>
-                <div class="photo-item">
-                    <img src="https://picsum.photos/400/300?random=73" alt="未来的我们">
-                    <span class="photo-caption">未来的我们</span>
+
+                <!-- 隐藏的Live Photo (点击"查看更多"时显示) - 共8张 -->
+                <div class="hidden-photos" style="display: none;">
+                    <img data-src="images/future/2018_11_12_cherish_01.jpg" alt="珍惜当下">
+                    <img data-src="images/future/2020_01_12_PYTHON_01.jpg" alt="编程学习">
+                    <img data-src="images/future/2020_12_17_btd_01.jpg" alt="生日快乐">
+                    <img data-src="images/future/2021_03_06_btd_01.jpg" alt="成长足迹">
+                    <img data-src="images/future/2021_10_09_PYTHON_01.jpg" alt="技术成长">
+                    <img data-src="images/future/2023_01_08_btd_01.jpg" alt="节日庆祝">
+                    <img data-src="images/future/2023_01_08_btd_02.jpg" alt="温馨时刻">
+                    <img data-src="images/future/2024_02_04_btd_02.jpg" alt="美好回忆">
                 </div>
             </div>
-            
-            <div class="future-vision">
-                <p class="future-text">2026年</p>
-                <p class="future-text">博士毕业</p>
-                <p class="future-text">然后呢？</p>
-                <p class="future-answer">和你，永远在一起</p>
-            </div>
-            
-            <button class="love-letter-button" onclick="window.location.href='secret.html'">
-                读一封写给你的信 💌
-            </button>
         </div>
     </section>
 
-    <!-- Scripts -->
+    <!-- 全屏画廊模态框 (Gallery Modal) -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="modal-close-btn" id="modalCloseBtn">×</div>
+        <div class="modal-header">
+            <div class="modal-title" id="modalGalleryTitle">所有照片</div>
+            <div class="modal-subtitle">我们的独家记忆</div>
+        </div>
+        <div class="modal-gallery-grid" id="modalGalleryGrid">
+            <!-- 图片将通过 JS 动态插入 -->
+        </div>
+    </div>
+
+    <script src="js/modern-effects.js"></script>
+    <script src="js/live-photo.js"></script>
+    <script src="js/easter-eggs.js"></script>
     <script src="js/story.js"></script>
 </body>
+
 </html>
