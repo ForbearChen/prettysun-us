@@ -1,0 +1,991 @@
+/* 现代化故事页样式 - Story Modern */
+:root {
+    --story-bg: #FFF0F5;
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --text-primary: #4A4A4A;
+    --accent-color: #FF6B9D;
+
+    /* 导航栏变量 */
+    --nav-height: 70px;
+    --nav-bg: rgba(255, 255, 255, 0.7);
+    --nav-blur: 20px;
+}
+
+body {
+    background: linear-gradient(180deg, #FFF0F5 0%, #E6E6FA 100%);
+    font-family: 'Playfair Display', serif;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    padding-top: var(--nav-height);
+    /* 防止导航栏遮挡 */
+}
+
+/* =========================================
+   1. 现代化导航栏 (Modern Navigation)
+   ========================================= */
+.story-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    /* Apple-like translucent gradient + frosted blur */
+    background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(246,240,244,0.4));
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px) saturate(120%);
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 36px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transition: background 0.28s ease, height 0.2s ease, box-shadow 0.2s ease, padding 0.2s ease;
+    color: rgba(20,20,20,0.85);
+}
+
+/* 滚动时导航栏更紧凑、背景更不透明 */
+.story-nav.scrolled {
+    --nav-height: 60px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,248,250,0.8));
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.10);
+    padding: 0 28px;
+}
+
+.story-nav .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-home {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-home:hover {
+    background: rgba(255,255,255,0.9);
+    color: var(--text-primary);
+    border-color: rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.story-nav .nav-chapter-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, #FF6B9D, #A66BFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+}
+
+.nav-menu-toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.nav-menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+}
+
+/* 章节侧边菜单（默认隐藏，通过 .active 控制显示） */
+.chapter-menu {
+    position: fixed;
+    top: var(--nav-height);
+    right: -100%;
+    width: 300px;
+    max-width: 80vw;
+    height: calc(100vh - var(--nav-height));
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: -6px 12px 40px rgba(0,0,0,0.12);
+    padding: 18px;
+    z-index: 1500;
+    transition: right 0.32s cubic-bezier(.2,.9,.2,1);
+    overflow-y: auto;
+}
+
+.chapter-menu.active {
+    right: 0;
+}
+
+.chapter-menu-item {
+    display: block;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.6);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.22s ease;
+    font-size: 1rem;
+}
+
+.chapter-menu-item:hover {
+    background: linear-gradient(90deg, rgba(255,107,157,0.08), rgba(166,107,255,0.06));
+    transform: translateX(-6px);
+}
+
+/* Hero Section */
+.story-hero {
+    height: 70vh;
+    /* 增加高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(166, 107, 255, 0.15) 0%, transparent 40%);
+    margin-bottom: 2rem;
+}
+
+.story-hero h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    background: linear-gradient(45deg, #FF6B9D, #FFD166, #A66BFF);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    animation: gradientText 5s ease infinite, fadeInUp 1s ease-out;
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.story-hero p {
+    font-size: 1.4rem;
+    color: #666;
+    font-family: 'ZCOOL XiaoWei', serif;
+    letter-spacing: 2px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+/* =========================================
+   2. 灵活的照片布局 (Flexible Gallery)
+   ========================================= */
+
+.chapter {
+    padding: 6rem 1rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.chapter-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* 偶数章节反转布局 (Z-pattern) */
+.chapter:nth-child(even) .chapter-content {
+    direction: rtl;
+}
+
+.chapter:nth-child(even) .chapter-text {
+    direction: ltr;
+    /* 文本方向重置 */
+    text-align: right;
+}
+/* 偶数章节的描述段落也右对齐以匹配布局 */
+.chapter:nth-child(even) .chapter-desc {
+    text-align: right;
+}
+
+.chapter-text {
+    padding: 2rem;
+}
+
+.chapter-number {
+    font-size: 8rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
+    /* 文字描边效果 */
+    -webkit-text-stroke: 2px rgba(255, 107, 157, 0.1);
+    line-height: 1;
+    position: absolute;
+    top: -4rem;
+    left: 0;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.chapter:nth-child(even) .chapter-number {
+    left: auto;
+    right: 0;
+}
+
+.chapter-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.chapter-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    border-radius: 2px;
+}
+
+.chapter-desc {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #555;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2.5rem;
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.02),
+        0 10px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    text-align: left; /* 默认左对齐以便段落阅读体验 */
+}
+
+/* --- 照片区域 --- */
+.gallery-block {
+    position: relative;
+    height: 450px;
+    /* 一定要有高度 */
+}
+
+/* 样式1：堆叠照片 (Stack) - 建议 3-5 张 */
+.photo-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+
+.photo-card {
+    position: absolute;
+    width: 280px;
+    height: 350px;
+    background: white;
+    padding: 12px 12px 45px 12px;
+    /* 拍立得样式 */
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    /* 更丝滑的贝塞尔曲线 */
+    border-radius: 4px;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    /* 默认居中 */
+    transform-origin: center center;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: brightness(1.02) contrast(1.05);
+    /* 稍微提升质感 */
+}
+
+/* 悬停交互：照片浮起并回正 */
+.photo-card:hover {
+    transform: translate(-50%, -50%) scale(1.1) rotate(0deg) !important;
+    z-index: 100 !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* 预设随机分布 (支持最多6张堆叠) */
+.photo-stack .photo-card:nth-child(1) {
+    transform: translate(-60%, -55%) rotate(-8deg);
+    z-index: 1;
+}
+
+.photo-stack .photo-card:nth-child(2) {
+    transform: translate(-40%, -45%) rotate(5deg);
+    z-index: 2;
+}
+
+.photo-stack .photo-card:nth-child(3) {
+    transform: translate(-55%, -35%) rotate(-4deg);
+    z-index: 3;
+}
+
+.photo-stack .photo-card:nth-child(4) {
+    transform: translate(-35%, -60%) rotate(3deg);
+    z-index: 2;
+}
+
+.photo-stack .photo-card:nth-child(5) {
+    transform: translate(-45%, -50%) rotate(6deg);
+    z-index: 1;
+}
+
+/* 样式2：网格拼贴 (Flexible Grid) - 适合 4 张或更多 */
+.photo-collage {
+    display: grid;
+    /* 自适应 Grid: 最小 140px，自动填充 */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    height: 100%;
+}
+
+.photo-collage .photo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    /* 拍立得边框变窄 */
+    top: 0;
+    left: 0;
+    transform: none !important;
+    /* 强制取消旋转 */
+}
+
+/* 如果超过4张，自动变成滚动视图或更密集的网格 */
+/* 这里我们根据子元素数量做一点特殊处理 */
+.photo-collage:has(.photo-card:nth-child(5)) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .story-nav {
+        padding: 0 20px;
+    }
+
+    .chapter-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .chapter:nth-child(even) .chapter-content {
+        direction: ltr;
+    }
+
+    .chapter:nth-child(even) .chapter-text {
+        text-align: left;
+    }
+
+    .chapter:nth-child(even) .chapter-title::after {
+        left: 0;
+        right: auto;
+    }
+
+    .chapter:nth-child(even) .chapter-number {
+        left: 0;
+    }
+
+    .gallery-block {
+        height: 380px;
+        order: -1;
+    }
+
+    .story-hero h1 {
+        font-size: 3rem;
+    }
+
+    .photo-card {
+        width: 240px;
+        height: 300px;
+    }
+
+    /* 移动端 Stack 布局稍微收拢一点 */
+    .photo-stack .photo-card:nth-child(1) {
+        transform: translate(-55%, -55%) rotate(-6deg);
+    }
+
+    .photo-stack .photo-card:nth-child(2) {
+        transform: translate(-45%, -45%) rotate(4deg);
+    }
+
+    .photo-stack .photo-card:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-2deg);
+    }
+}
+
+/* 动画类 */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   3. 查看更多 & 全屏画廊 (View More & Modal)
+   ========================================= */
+
+.view-more-container {
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 5;
+}
+
+.view-more-btn {
+    background: white;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-more-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.3);
+}
+
+/* 全屏画廊模态框 */
+.gallery-modal {
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow-y: auto;
+    padding: 80px 20px 40px 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-modal.active {
+    display: block;
+    opacity: 1;
+}
+
+/* 模态框关闭按钮 */
+.modal-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #333;
+    transition: all 0.3s;
+    z-index: 2001;
+}
+
+.modal-close-btn:hover {
+    background: #e0e0e0;
+    transform: rotate(90deg);
+}
+
+/* 模态框头部 */
+.modal-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.5s ease;
+}
+
+.modal-title {
+    font-size: 2rem;
+    background: linear-gradient(45deg, #FF6B9D, #A66BFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.modal-subtitle {
+    color: #666;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+/* 模态框网格内容 */
+.modal-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.modal-photo-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: zoom-in;
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.modal-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.modal-photo-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 动画关键帧补全 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   图片放大模态框样式 (Image Zoom Modal)
+   ========================================= */
+.image-zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.image-zoom-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zoom-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.zoom-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    max-height: calc(100vh - 40px); /* 视口高度自适应，避免固定像素导致裁剪 */
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.image-zoom-modal.active .zoom-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.zoom-modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(232, 180, 184, 0.1), rgba(166, 123, 142, 0.1));
+}
+
+.zoom-modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+.zoom-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.zoom-modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.zoom-modal-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+.zoom-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.zoom-nav-btn:hover:not(:disabled) {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.zoom-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.zoom-nav-prev {
+    left: 10px;
+}
+
+.zoom-nav-next {
+    right: 10px;
+}
+
+.zoom-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+}
+
+.zoom-image-container {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* 限制容器高度，减去 header/footer 以及 padding 空间，确保图片在可视区域内按比例缩放 */
+    max-height: calc(100vh - 160px);
+    position: relative;
+    overflow: auto; /* 小屏幕上允许滚动查看完整图片 */
+}
+
+.zoom-main-image {
+    /* 更稳妥的限制：在容器中完全可见，按比例缩放 */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: zoom-out;
+    display: block;
+}
+
+.zoom-loading {
+    position: absolute;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: 'ZCOOL XiaoWei', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+.zoom-modal-footer {
+    padding: 15px 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.zoom-counter {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* 模态框中的图片悬停效果 */
+.modal-img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.modal-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.modal-img-container:hover .modal-gallery-img {
+    transform: scale(1.05);
+}
+
+.modal-img-container:hover .zoom-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.zoom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 5;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.zoom-icon:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .zoom-modal-content {
+        width: 95%;
+        height: 95%;
+        margin: 2.5% auto;
+    }
+
+    .zoom-modal-header {
+        padding: 15px 20px;
+    }
+
+    .zoom-modal-title {
+        font-size: 1rem;
+    }
+
+    .zoom-modal-close {
+        font-size: 1.5rem;
+    }
+
+    .zoom-modal-body {
+        padding: 15px;
+    }
+
+    .zoom-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .zoom-nav-prev {
+        left: 5px;
+    }
+
+    .zoom-nav-next {
+        right: 5px;
+    }
+
+    .zoom-modal-footer {
+        padding: 10px 20px;
+    }
+}
+
+/* =========================================
+   章节级彩蛋按钮样式
+   ========================================= */
+.chapter-easter-btn {
+    margin-left: 12px;
+    padding: 6px 10px;
+    background: linear-gradient(135deg, var(--accent-color), var(--text-primary));
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.chapter-easter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+}
+
+/* 小屏幕时将按钮放到下一行，避免拥挤 */
+@media (max-width: 768px) {
+    .chapter-easter-btn {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* 你点点？ 按钮和提示弹窗 */
+.tease-btn {
+    background: linear-gradient(135deg, #FF6B9D, #A66BFF);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.tease-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.16); }
+
+.tease-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 12000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.18s ease;
+}
+.tease-popup.active { opacity: 1; visibility: visible; }
+.tease-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+.tease-popup-card {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(180deg, #FFF, #FFF0F5);
+    border-radius: 14px;
+    padding: 18px 22px;
+    min-width: 260px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+    text-align: center;
+    font-family: 'ZCOOL XiaoWei', serif;
+    color: var(--text-primary);
+    z-index: 12010;
+}
+.tease-popup-close {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.tease-popup-body {
+    padding: 14px 6px;
+    font-size: 1.15rem;
+}
